@@ -9,12 +9,12 @@
 <meta property="og:site_name" content="KNU-EE-UB">
 <meta property="og:title" content="UB 납땜 실습 — 전원회로 만들기">
 <meta property="og:description" content="LM2596 가변 전원을 만능기판에 직접 만듭니다">
-<meta property="og:image" content="https://kimkyokuan1234-bot.github.io/knueeub/og-power-circuit.png">
-<meta property="og:url" content="https://kimkyokuan1234-bot.github.io/knueeub/workshops/power-circuit.html">
+<meta property="og:image" content="https://kimkyokuan1234-bot.github.io/knueeub/assets/og/power-circuit.png">
+<meta property="og:url" content="https://kimkyokuan1234-bot.github.io/knueeub/workshops/power-circuit/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
 <div class="wrap">
@@ -41,7 +41,7 @@
 <div class="callout guide">
   <p class="title">납땜이 처음이라면, 이것부터 보고 오세요</p>
   <p>인두 잡는 법부터 정리해둔 UB 납땜 가이드가 있습니다. 실습 전에 한 번 훑어보고 오시면 훨씬 수월합니다.</p>
-  <p><a class="btn" href="../index.html">UB 납땜 가이드 보기 →</a></p>
+  <p><a class="btn" href="../../guides/soldering/">UB 납땜 가이드 보기 →</a></p>
 </div>
 
 <section class="section reveal">
@@ -49,7 +49,7 @@
 
 <!-- 완성품 대표 사진 -->
 <figure class="figure">
-  <img src="./done-overview.jpg" alt="만능기판에 직접 조립한 LM2596 가변 전원 완성품">
+  <img src="./images/done-overview.jpg" alt="만능기판에 직접 조립한 LM2596 가변 전원 완성품">
 </figure>
 
 <p>LM2596은 세계에서 가장 많이 팔린 강압 컨버터 IC 중 하나입니다. 아두이노 프로젝트부터 산업용 장비까지, 전원이 필요한 곳이면 어디서나 쓰입니다. 알리익스프레스에서 천 원이면 완제품 모듈을 살 수 있지만, 이번 실습에서는 그걸 부품 단위로 직접 만듭니다.</p>
@@ -80,7 +80,7 @@
   <li><span class="k">일시</span><span class="v">추후 공지</span></li>
   <li><span class="k">장소</span><span class="v">IT2호관 220호 캡스톤디자인실</span></li>
   <li><span class="k">준비물</span><span class="v">없음</span></li>
-  <li><span class="k">사전 준비</span><span class="v"><a href="../index.html">UB 납땜 가이드</a> 정독. 시간 되면 이 페이지 훑어보고 <a href="#video">제작 영상</a>도 한 번 보기</span></li>
+  <li><span class="k">사전 준비</span><span class="v"><a href="../../guides/soldering/">UB 납땜 가이드</a> 정독. 시간 되면 이 페이지 훑어보고 <a href="#video">제작 영상</a>도 한 번 보기</span></li>
 </ul>
 </section>
 
@@ -88,7 +88,7 @@
 <h2 id="smps"><span class="sec-n">4</span>더 어려운 것을 만들어 보고 싶다면 — SMPS</h2>
 
 <div class="schematic">
-  <img src="./smps-schematic.png" alt="VIPer22A 기반 SMPS 회로도: 퓨즈와 NTC, 브리지 정류 다이오드, 트랜스포머, PC817 포토커플러와 TL431 피드백, 12V 출력과 7805 5V 레귤레이터">
+  <img src="./images/smps-schematic.png" alt="VIPer22A 기반 SMPS 회로도: 퓨즈와 NTC, 브리지 정류 다이오드, 트랜스포머, PC817 포토커플러와 TL431 피드백, 12V 출력과 7805 5V 레귤레이터">
 </div>
 
 <p>SMPS(스위칭 모드 전원공급장치)는 교류 220V를 직류로 바꿔주는 회로입니다. 우리가 쓰는 어댑터, 컴퓨터 파워가 전부 이 방식입니다.</p>
@@ -230,14 +230,14 @@
 
 <h3>1. 준비물</h3>
 <figure class="figure">
-  <img src="./parts-overview.jpg" alt="실습에 사용할 전체 부품">
+  <img src="./images/parts-overview.jpg" alt="실습에 사용할 전체 부품">
 </figure>
 
 <h3>2. 부품 배치도</h3>
 <figure class="figure">
-  <img src="./lm2596_perfboard_layout.svg" alt="LM2596 벅 컨버터 만능기판 배치도, 부품면 기준">
+  <img src="./images/lm2596_perfboard_layout.svg" alt="LM2596 벅 컨버터 만능기판 배치도, 부품면 기준">
 </figure>
-<p><a class="btn" href="./lm2596_perfboard_layout.png" download>배치도 이미지 다운로드</a></p>
+<p><a class="btn" href="./images/lm2596_perfboard_layout.png" download>배치도 이미지 다운로드</a></p>
 <p>부품면에서 본 그림입니다. 뒷면에서 납땜할 때는 좌우가 반대라는 점만 기억하세요.</p>
 
 <h3>3. 사전 가공 — 다이오드 구멍 넓히기</h3>
@@ -264,7 +264,7 @@
 
 <p>전선으로 잇는 경우, 피복을 벗긴 심선을 먼저 꼬은 다음 납이 가닥 사이로 완전히 스며들도록 코팅해서 쓰세요. 이 과정을 건너뛰면 가닥이 풀려 옆 패드에 닿거나, 열이 제대로 전달되지 않아 납땜이 겉돌게 됩니다.</p>
 
-<p><a class="btn" href="../index.html#tinning">전선 도금(Tinning) 방법 보기 →</a></p>
+<p><a class="btn" href="../../guides/soldering/#tinning">전선 도금(Tinning) 방법 보기 →</a></p>
 
 
 <h4>납땜할 때</h4>
@@ -277,7 +277,7 @@
 <p>옆 패드와 붙지 않았는지 확인하면서 진행하세요. 반대로 옆에 아무것도 없는 방향이면 납이 조금 튀어나가도 상관없습니다.</p>
 <p>붙으면 안 되는 곳이 붙었다면 인두팁으로 덜어내거나, 솔더써커로 빨아내거나, 솔더윅에 플럭스를 발라 흡수시키면 됩니다.</p>
 
-<p><a class="btn" href="../index.html#s5">잘못된 납땜 제거 방법 보기 →</a></p>
+<p><a class="btn" href="../../guides/soldering/#s5">잘못된 납땜 제거 방법 보기 →</a></p>
 
 <h4>LM2596 다리 벌리기</h4>
 <p>TO-220 패키지는 다리 간격이 만능기판보다 좁아서 그대로는 안 들어갑니다. 5칸에 맞춰 벌려야 합니다.</p>
@@ -292,8 +292,8 @@
 
 <h3>5. 완성</h3>
 <figure class="figure pair">
-  <img src="./done-front.jpg" alt="완성된 보드의 부품면">
-  <img src="./done-back.jpg" alt="완성된 보드의 납땜면 배선">
+  <img src="./images/done-front.jpg" alt="완성된 보드의 부품면">
+  <img src="./images/done-back.jpg" alt="완성된 보드의 납땜면 배선">
   <figcaption>위가 앞면, 아래가 뒷면입니다. 배선을 어떻게 이었는지 참고하세요.</figcaption>
 </figure>
 
@@ -436,11 +436,11 @@
 <footer>
   참고 자료 · <a href="https://www.ti.com/lit/ds/symlink/lm2596.pdf">Texas Instruments LM2596 데이터시트</a><br>
   제작일 2026.09.14<br>
-  수정일 2026.09.24<br>
+  수정일 2026.09.29<br>
   경북대학교 하드웨어 제작 동아리 UB
 </footer>
 
 </div>
-<script src="../assets/reveal.js"></script>
+<script src="../../assets/reveal.js"></script>
 </body>
 </html>

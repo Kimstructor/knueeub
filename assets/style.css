@@ -195,3 +195,11 @@ h2 .sec-n{
 
 /* 푸터 줄 간격 */
 footer{line-height:1.9}
+
+/* 첫 화면 링크 목록 */
+.hub{list-style:none;padding:0;margin:18px 0 0;border-top:1px solid var(--rule)}
+.hub li{margin:0;border-bottom:1px solid var(--rule)}
+.hub a{display:block;padding:16px 4px;text-decoration:none;color:var(--ink)}
+.hub a strong{display:block;font-size:17.5px}
+.hub a span{display:block;font-size:14.5px;color:var(--ink-soft);margin-top:2px}
+.hub a:hover strong{color:var(--solder)}
