@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fusion 기초와 AI 모델링 · UB</title>
+<meta name="description" content="Fusion 설치와 기본 조작, AI를 Fusion에 연결하는 법, AI 네 가지에게 같은 브라켓을 맡겨 본 결과를 정리했습니다">
+<meta property="og:site_name" content="KNU-EE-UB">
+<meta property="og:title" content="UB 3D 실습 — Fusion 기초와 AI 모델링">
+<meta property="og:description" content="Fusion 설치와 기본 조작, AI 연결, AI 비교">
+<meta property="og:image" content="https://kimstructor.github.io/knueeub/assets/og/fusion-ai.png">
+<meta property="og:url" content="https://kimstructor.github.io/knueeub/workshops/fusion-ai/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="kicker">UB 3D 실습 · Fusion</p>
+  <h1>Fusion 기초와 AI 모델링</h1>
+  <p class="lede">Fusion을 설치하고 기본 조작을 익힌 뒤, AI에게 Fusion 모델링을 맡기는 방법과 실제로 맡겨 본 결과를 정리했습니다.</p>
+</header>
+
+<nav class="toc" aria-label="목차">
+  <h2>목차</h2>
+  <ul>
+    <li><a href="#install"><span class="n">1</span>설치</a></li>
+    <li><a href="#basics"><span class="n">2</span>기본 조작</a></li>
+    <li><a href="#connect"><span class="n">3</span>AI 연결</a></li>
+    <li><a href="#prompt"><span class="n">4</span>AI에게 요청하는 법</a></li>
+    <li><a href="#compare"><span class="n">5</span>AI 비교</a></li>
+  </ul>
+</nav>
+
+<section class="section reveal">
+<h2 id="install"><span class="sec-n">1</span>설치</h2>
+
+<p>학생은 교육용 라이선스로 Fusion을 1년 동안 무료로 쓸 수 있고, 재학 중이면 매년 갱신됩니다. <strong>학생 확인에 며칠이 걸릴 수 있으니 실습 전에 미리 신청해 두세요.</strong></p>
+
+<ul class="spec">
+  <li><span class="k">노트북</span><span class="v">Windows 또는 Mac. AI 연결은 데스크톱 앱에서만 됩니다</span></li>
+  <li><span class="k">마우스</span><span class="v">휠 마우스. 화면 이동과 회전을 가운데 버튼으로 해서, 터치패드로는 따라 하기 어렵습니다</span></li>
+</ul>
+
+<ol>
+  <li><a href="https://www.autodesk.com/education/edu-software/fusion">Autodesk 교육용 Fusion 페이지</a>에서 Fusion을 고르고 교육 플랜에 가입합니다. 처음이면 이때 Autodesk 계정이 만들어집니다.</li>
+  <li>학생 자격을 확인합니다. 학교 이메일로 바로 안 되면 재학증명서를 올립니다. Autodesk 안내로는 서류 확인에 며칠 걸릴 수 있습니다.</li>
+  <li>확인이 끝나면 Fusion을 내려받아 설치하고, 같은 계정으로 로그인합니다.</li>
+  <li>오른쪽 위 계정 아이콘 → <strong>환경설정(Preferences)</strong> → <strong>기본 단위(Default Units)</strong>에서 설계 단위가 mm인지 확인합니다.</li>
+</ol>
+</section>
+
+<section class="section reveal">
+<h2 id="basics"><span class="sec-n">2</span>기본 조작</h2>
+
+<h3>화면 구성</h3>
+<ul class="spec">
+  <li><span class="k">도구 막대</span><span class="v">위쪽. 스케치, 돌출, 필렛 같은 명령</span></li>
+  <li><span class="k">브라우저</span><span class="v">왼쪽. 원점, 바디, 스케치 목록. 눈 아이콘으로 숨기기</span></li>
+  <li><span class="k">보기 큐브</span><span class="v">오른쪽 위. 면을 누르면 그 방향에서 보고, 집 아이콘을 누르면 처음 시점으로</span></li>
+  <li><span class="k">타임라인</span><span class="v">아래쪽. 만든 순서대로 쌓이고, 더블클릭하면 그 단계를 다시 고칠 수 있습니다</span></li>
+</ul>
+
+<h3>마우스</h3>
+<table>
+  <thead><tr><th>동작</th><th>방법</th></tr></thead>
+  <tbody>
+    <tr><td>화면 이동</td><td>가운데 버튼을 누른 채 끌기</td></tr>
+    <tr><td>회전</td><td><kbd>Shift</kbd> + 가운데 버튼을 누른 채 끌기</td></tr>
+    <tr><td>확대·축소</td><td>휠 굴리기</td></tr>
+  </tbody>
+</table>
+
+<h3>자주 쓰는 단축키</h3>
+<table>
+  <thead><tr><th>키</th><th>명령</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>L</kbd></td><td>선 (Line)</td></tr>
+    <tr><td><kbd>R</kbd></td><td>2점 직사각형 (2-Point Rectangle)</td></tr>
+    <tr><td><kbd>C</kbd></td><td>중심 지름 원 (Center Diameter Circle)</td></tr>
+    <tr><td><kbd>D</kbd></td><td>스케치 치수 (Sketch Dimension)</td></tr>
+    <tr><td><kbd>X</kbd></td><td>보조선으로 바꾸기 (Construction)</td></tr>
+    <tr><td><kbd>T</kbd></td><td>자르기 (Trim)</td></tr>
+    <tr><td><kbd>O</kbd></td><td>간격띄우기 (Offset)</td></tr>
+    <tr><td><kbd>E</kbd></td><td>돌출 (Extrude)</td></tr>
+    <tr><td><kbd>F</kbd></td><td>필렛 (Fillet)</td></tr>
+    <tr><td><kbd>H</kbd></td><td>구멍 (Hole)</td></tr>
+    <tr><td><kbd>I</kbd></td><td>측정 (Measure)</td></tr>
+    <tr><td><kbd>S</kbd></td><td>명령 검색 상자</td></tr>
+  </tbody>
+</table>
+<p class="table-note">한글 메뉴 이름이 다르게 보이면 괄호 안 영어 이름으로 찾으면 됩니다.</p>
+
+<h3>모델링 흐름</h3>
+<ol>
+  <li><strong>스케치 만들기</strong> → 그릴 평면이나 면을 고릅니다.</li>
+  <li>선, 사각형, 원을 그리고 <kbd>D</kbd>로 치수를 줍니다.</li>
+  <li>구속으로 위치를 고정합니다. 일치(점 붙이기), 중간점, 동일(같은 크기), 수평·수직, 대칭을 가장 많이 씁니다. 선이 <strong>파란색이면 아직 덜 정해진 것</strong>이고, 다 정해지면 검은색이 됩니다.</li>
+  <li><strong>스케치 마침</strong>을 누르고, <kbd>E</kbd>로 돌출하거나 잘라냅니다. 영역을 고를 때 원하는 부분만 골랐는지 꼭 확인합니다.</li>
+  <li><kbd>Ctrl</kbd> + <kbd>S</kbd>로 저장합니다. 파일은 Autodesk 클라우드에 저장됩니다.</li>
+</ol>
+
+<div class="callout">
+  <p class="title">출력용 파일 내보내기</p>
+  <p>왼쪽 브라우저에서 바디를 오른쪽 클릭 → <strong>메쉬로 저장(Save As Mesh)</strong> → 3MF 또는 STL을 고릅니다.</p>
+</div>
+</section>
+
+<section class="section reveal">
+<h2 id="connect"><span class="sec-n">3</span>AI 연결</h2>
+
+<p>Fusion 안에 들어 있는 MCP 서버를 켜고 AI 데스크톱 앱을 연결하면, 말로 지시한 내용을 AI가 Fusion에서 직접 모델링합니다. chatgpt.com, claude.ai 같은 웹 채팅에서는 바로 연결되지 않습니다.</p>
+
+<table>
+  <thead><tr><th>AI</th><th>쓰는 앱</th><th>무료 계정</th></tr></thead>
+  <tbody>
+    <tr><td>ChatGPT</td><td>ChatGPT 데스크톱 앱(Codex)</td><td>됨. 월 사용 한도 있음</td></tr>
+    <tr><td>Claude</td><td>Claude 데스크톱 앱</td><td>확인 못 함. Pro 이상은 됨</td></tr>
+    <tr><td>Gemini</td><td>Antigravity 앱</td><td>문서상 됨(AI Plus로 확인). Gemini 3.8 Flash만</td></tr>
+    <tr><td>Autodesk Assistant</td><td>Fusion에 들어 있음</td><td>교육용 라이선스에서 확인. 연결 필요 없음</td></tr>
+  </tbody>
+</table>
+
+<h3>Fusion 준비</h3>
+<ol>
+  <li>Fusion을 실행하고 오른쪽 위 계정 아이콘 → <strong>환경설정(Preferences)</strong> → <strong>일반 → API</strong>로 갑니다.</li>
+  <li><strong>Fusion MCP Server</strong>를 체크하고 포트가 <code>27182</code>인지 확인한 뒤 <strong>Apply</strong>를 누릅니다.</li>
+  <li>텍스트 명령 창에 <code>MCP - http://127.0.0.1:27182/mcp</code>가 보이면 켜진 것입니다.</li>
+  <li><strong>새 디자인을 열어 둡니다.</strong> 홈 화면에서는 AI가 작업할 수 없고, 작업 중인 디자인이 열려 있으면 AI가 그걸 고쳐 버릴 수 있습니다.</li>
+</ol>
+<p>체크박스가 없으면 Fusion을 최신 버전으로 업데이트합니다.</p>
+
+<h3>ChatGPT</h3>
+<ol>
+  <li>ChatGPT 데스크톱 앱을 설치하고 로그인합니다. "Windows 설정을 마치세요" 안내가 뜨면 <strong>계속</strong>을 누르고 기다립니다.</li>
+  <li>왼쪽 아래 프로필 → <strong>설정</strong> → 검색창에 <code>MCP</code> → <strong>플러그인</strong> → <strong>MCP</strong> 탭으로 갑니다.</li>
+  <li><strong>추가 → MCP 서버 추가</strong>를 누르고 이름 <code>fusion</code>, 유형 <strong>스트리밍 가능한 HTTP</strong>, URL <code>http://127.0.0.1:27182/mcp</code>를 넣습니다. 나머지 칸은 비워 둡니다.</li>
+  <li>저장한 뒤 홈 화면 입력창에 <code>/mcp</code>를 입력해 <code>fusion 사용함</code>이 보이면 연결된 것입니다. "인증 미지원"은 정상입니다.</li>
+</ol>
+
+<h3>Claude</h3>
+<ol>
+  <li>Claude 데스크톱 앱을 설치하고 로그인합니다.</li>
+  <li><strong>설정 → 커넥터 → 추가 → 커넥터 둘러보기</strong>에서 <code>Fusion</code>을 검색합니다.</li>
+  <li><strong>Autodesk Fusion</strong>을 설치합니다. 이름이 비슷한 Fusion Data MCP는 다른 기능입니다.</li>
+  <li>Claude를 다시 시작합니다. 커넥터의 도구 목록에 도구가 보이면 연결된 것입니다.</li>
+</ol>
+
+<h3>Gemini (Antigravity)</h3>
+<p>Gemini 데스크톱 앱에는 MCP 서버를 추가하는 메뉴가 없어서, Google이 만든 Antigravity 앱을 씁니다.</p>
+<ol>
+  <li>Antigravity 앱을 설치하고 Google 계정으로 로그인합니다.</li>
+  <li>메모장의 <strong>파일 → 열기</strong>에서 주소창에 <code>%USERPROFILE%\.gemini\config</code>를 입력하고, 파일 형식을 <strong>모든 파일</strong>로 바꾼 뒤 <code>mcp_config.json</code>을 엽니다.</li>
+  <li>아래 내용을 넣고 저장합니다. 다른 서버가 이미 있으면 <code>fusion</code> 항목만 추가합니다.</li>
+  <li>Antigravity 메뉴의 <strong>Window → Close</strong>로 앱을 완전히 닫고 다시 엽니다. 창의 X 버튼으로는 설정을 다시 읽지 않습니다.</li>
+  <li><strong>Customizations → Installed → MCP Servers</strong>에 <strong>fusion ● 4 tools enabled</strong>가 보이면 연결된 것입니다.</li>
+</ol>
+<pre><code>{
+  "mcpServers": {
+    "fusion": {
+      "serverUrl": "http://127.0.0.1:27182/mcp"
+    }
+  }
+}</code></pre>
+<p>주소 항목 이름은 반드시 <code>serverUrl</code>이어야 합니다. <code>url</code>이나 <code>httpUrl</code>은 인식되지 않습니다.</p>
+
+<h3>Autodesk Assistant</h3>
+<p>Fusion 오른쪽 위 Assistant 아이콘을 누르면 오른쪽에 대화창이 열립니다. 따로 연결할 필요가 없습니다.</p>
+
+<h3>첫 테스트</h3>
+<p>아래 문장을 보내 Fusion에 큐브가 생기면 연결이 끝난 것입니다. "Fusion MCP 도구로"를 넣어야 ChatGPT가 화면을 직접 조작하려 하지 않고 MCP를 씁니다.</p>
+<pre><code>Fusion MCP 도구로 10mm 큐브를 만들어 줘</code></pre>
+
+<table class="wrap-first">
+  <caption>자주 막히는 부분</caption>
+  <thead><tr><th>증상</th><th>해결</th></tr></thead>
+  <tbody>
+    <tr><td>ChatGPT가 "Computer Use" 허용을 묻는다</td><td><strong>거부</strong>한 뒤 "Fusion MCP 도구로"를 넣어 다시 요청</td></tr>
+    <tr><td>도구 실행 승인 창이 뜬다</td><td>정상. 실행할 내용을 보고 <strong>한 번만 허용</strong></td></tr>
+    <tr><td>연결되지 않는다</td><td>Fusion이 켜져 있는지, MCP 체크와 포트를 다시 확인</td></tr>
+    <tr><td>명령이 실행되지 않는다</td><td>홈 화면이 아니라 디자인을 열기</td></tr>
+    <tr><td>반응 없이 멈춘다</td><td>Fusion에 열려 있는 대화상자(예: 복구된 문서)를 닫기</td></tr>
+  </tbody>
+</table>
+
+<div class="callout warn">
+  <span class="c-label">안전 수칙</span>
+  <p>MCP가 켜져 있는 동안에는 내 컴퓨터의 다른 프로그램도 로그인 없이 Fusion에 명령을 보낼 수 있습니다.</p>
+  <ul>
+    <li>작업 전에 디자인을 저장합니다.</li>
+    <li>실행 승인은 <strong>항상 허용</strong> 대신 <strong>한 번만 허용</strong>을 누릅니다.</li>
+    <li>ChatGPT 설정의 <strong>전체 액세스</strong>는 끕니다. 켜져 있으면 승인 없이 파일을 고치고 명령을 실행합니다.</li>
+    <li>작업이 끝나면 Fusion의 MCP 체크를 해제합니다.</li>
+  </ul>
+</div>
+</section>
+
+<section class="section reveal">
+<h2 id="prompt"><span class="sec-n">4</span>AI에게 요청하는 법</h2>
+
+<p>AI에게 치수만 던져 주면 숫자는 맞아도 쓸 수 없는 모양이 나옵니다. 아래 틀로 <strong>무엇에 쓰는지</strong>까지 알려 주고, 만들기 전에 질문하게 하면 결과가 훨씬 좋아집니다.</p>
+
+<h3>요청 틀</h3>
+<p>위의 세 칸은 직접 채우고, [진행 방식]은 그대로 붙여 넣습니다. 프린터는 UB는 프루사 MK4, 돌구름은 뱀부랩 P2S입니다. 모르는 값은 비워 두지 말고 AI에게 물어보면서 정하면 됩니다.</p>
+<div class="copy-box">
+<button class="btn copy-btn" type="button" data-copy="tpl">복사</button>
+<pre id="tpl"><code>[무엇에 쓰는지]
+(어디에 붙이고, 무엇을 하는 부품인지)
+
+[맞춰야 하는 숫자]
+- 붙는 부품의 구멍 간격·지름
+- 꼭 지켜야 하는 거리
+- 고정할 볼트 규격과 구멍 지름
+- 끼우는 부분의 크기
+
+[참고 자료]
+(있으면 사진이나 스케치 첨부. "모양과 배치만 참고하고, 고정 방식과 재료는 내가 적은 대로 해 줘.")
+
+[진행 방식]
+Fusion MCP 도구로 새 디자인에 만들어 줘. (프린터 이름)으로 PLA 출력할 거야.
+1. 만들기 전에 내 말을 어떻게 이해했는지 쉬운 말로 다시 설명해 줘. 모르는 값은 추측하지 말고, 정해야 할 게 있으면 선택지로 질문해 줘.
+2. 큰 모양만 먼저 만들고 멈춰. 내가 괜찮다고 하면 나머지를 만들어 줘.
+3. 다 만들면 내가 준 숫자대로 됐는지 Fusion에서 재서 표로 보여 줘.
+4. 용도를 생각했을 때 약한 곳, 출력할 때 바닥에 놓을 면과 서포트가 필요한 곳을 알려 줘.</code></pre>
+</div>
+
+<h3>채운 예시</h3>
+<p>아래 AI 비교에 쓴 요청입니다.</p>
+<pre><code>[무엇에 쓰는지]
+3030 알루미늄 프로파일에 NEMA17 스테퍼 모터를 고정하는 브라켓이 필요해.
+이 모터로 프로파일과 나란한 리드스크류를 돌릴 거야.
+
+[맞춰야 하는 숫자]
+- NEMA17 모터: 나사 구멍 31mm 간격 정사각형, 지름 3.2mm 4개 / 가운데 구멍 지름 22.3mm / 모터 몸체 42.3mm 정사각형
+- 프로파일에 닿는 면에서 모터 축 중심까지 33.75mm
+- 프로파일에 M6 볼트 2개와 T너트로 고정, 구멍 지름 6.3mm
+- 프로파일 홈에 끼우는 돌출부: 폭 6.5mm, 높이 3.5mm, T너트 자리는 길이 11mm씩 비우기
+
+[진행 방식]
+Fusion MCP 도구로 새 디자인에 만들어 줘. 프루사 MK4로 PLA 출력할 거야.
+1. ~ 4. (위 틀과 같음)</code></pre>
+
+<h3>고칠 때</h3>
+<pre><code>(고칠 부분)을 (어떻게) 바꿔 줘. (바뀌면 안 되는 것)은 그대로 둬.</code></pre>
+<p><strong>보이는 증상이 아니라 원인을 말해야 합니다.</strong> Autodesk Assistant가 모터를 보강판 반대쪽에 달아서 모터 아래가 떠 있었을 때, "받침이 모터에 안 닿으니 닿게 해 줘"라고 하자 블록만 하나 더 붙였습니다. 원인을 말하면 이렇게 됩니다.</p>
+<pre><code>모터가 보강판 반대쪽에 달려 있어. 모터 몸체가 보강판 사이, 바닥판 위에 오도록 바꿔 줘. 구멍 크기와 간격, 축 높이는 그대로 둬.</code></pre>
+</section>
+
+<section class="section reveal">
+<h2 id="compare"><span class="sec-n">5</span>AI 비교</h2>
+
+<p>ChatGPT, Gemini, Autodesk Assistant에게 위의 채운 예시로 같은 NEMA17 모터 브라켓을 맡겼고(ChatGPT는 참고 사진도 넣음), 직접 설계한 것과 Claude 것까지 함께 출력했습니다. Claude 것은 운영진이 여러 번 고쳐 달라고 해서 나온 최종본입니다. <strong>모든 AI가 구멍 간격과 축 높이 같은 숫자는 맞췄습니다.</strong> 차이는 숫자 밖의 판단, 즉 볼트 머리가 들어갈 자리, 모터 방향, 서포트에서 났습니다.</p>
+
+<table class="keep-2">
+  <caption>PrusaSlicer · 프루사 MK4 · PLA · 0.20mm STRUCTURAL · 채움 15% · 무게와 시간은 서포트 포함</caption>
+  <thead><tr><th>만든 것</th><th>출력</th><th>서포트</th><th>문제</th></tr></thead>
+  <tbody>
+    <tr><td>직접 설계</td><td>18g<br>1시간 2분</td><td>필요</td><td>없음</td></tr>
+    <tr><td>Claude</td><td>19.95g<br>1시간 6분</td><td>없음</td><td>없음</td></tr>
+    <tr><td>Gemini</td><td>23.72g<br>1시간 15분</td><td>필요</td><td>렌치볼트 머리가 모터와 1.4mm 겹침</td></tr>
+    <tr><td>ChatGPT</td><td>22.8g<br>1시간 12분</td><td>필요</td><td>렌치볼트 머리가 모터에 걸림, 보강 블록이 모터 자리를 0.15mm 침범</td></tr>
+    <tr><td>Assistant</td><td>출력 안 함</td><td>—</td><td>모터를 보강판 반대쪽에 달아 길이가 106mm</td></tr>
+  </tbody>
+</table>
+
+<table class="wrap-first">
+  <caption>만드는 과정</caption>
+  <thead><tr><th>AI</th><th>걸린 시간</th><th>사용량</th></tr></thead>
+  <tbody>
+    <tr><td>ChatGPT<span class="sub">Free · Codex · GPT-5.6 Terra</span></td><td>약 9분. 그전에 3번 넘게 실패</td><td>모든 시도 후 월 한도 40% 남음</td></tr>
+    <tr><td>Gemini<span class="sub">AI Plus · Antigravity · Gemini 3.8 Flash</span></td><td>약 19분. 질문 답변 대기 포함</td><td>주간 한도 96% → 62%</td></tr>
+    <tr><td>Assistant<span class="sub">Fusion 내장</span></td><td>첫 시도에서 Fusion이 8분 넘게 멈춤, 이어서 약 4분</td><td>확인 못 함</td></tr>
+    <tr><td>Claude<span class="sub">Max · Fusion 스크립트</span></td><td>운영진이 여러 번 고쳐 달라고 한 최종본이라 비교 제외</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<h3>직접 설계 <span class="material">기준</span></h3>
+<div class="figure duo">
+  <img src="./images/kim-inside.webp" alt="직접 설계한 브라켓 안쪽 — 경사 옆면 사이에 모터 자리와 2mm 테두리" loading="lazy">
+  <img src="./images/kim-outside.webp" alt="직접 설계한 브라켓 바깥쪽 — 모터 구멍과 바닥 돌출부" loading="lazy">
+</div>
+<p>판 두께 5mm. 모터 몸체가 경사 옆면 사이에 들어가고, 축 높이 33.75mm 안에 M6 볼트 머리가 들어갈 틈을 남겼습니다. 판 위쪽의 2mm 테두리는 시뮬레이션해 보니 판을 0.6mm 두껍게 한 것과 같은 효과를 재료 1/3로 냅니다.</p>
+
+<h3>Claude <span class="material">서포트 없음</span></h3>
+<div class="figure duo">
+  <img src="./images/claude-inside.webp" alt="Claude 브라켓 안쪽" loading="lazy">
+  <img src="./images/claude-outside.webp" alt="Claude 브라켓 바깥쪽 — 끝을 45도로 깎은 돌출부" loading="lazy">
+</div>
+<p>돌출부 끝을 45도로 깎고 M6 구멍을 물방울 모양으로 만들어, 서포트 없이 출력됩니다. 볼트 머리와 모터 사이에 1.6mm 여유가 있습니다.</p>
+
+<h3>Gemini <span class="material">볼트 머리 간섭</span></h3>
+<div class="figure duo">
+  <img src="./images/gemini-inside.webp" alt="Gemini 브라켓 안쪽" loading="lazy">
+  <img src="./images/gemini-outside.webp" alt="Gemini 브라켓 바깥쪽" loading="lazy">
+</div>
+<p>판을 8mm로 두껍게 만들어서 렌치볼트 머리가 모터와 1.4mm 겹칩니다. Gemini가 스스로 버튼헤드 볼트를 쓰라고 안내했습니다. 처음에는 삼각 보강판이 모터 자리를 막아서 한 번 고쳤습니다.</p>
+
+<h3>ChatGPT <span class="material">수정 어려움</span></h3>
+<div class="figure duo">
+  <img src="./images/gpt-inside.webp" alt="ChatGPT 브라켓 안쪽 — 모터 자리 양옆 보강 블록" loading="lazy">
+  <img src="./images/gpt-outside.webp" alt="ChatGPT 브라켓 바깥쪽" loading="lazy">
+</div>
+<p>Gemini처럼 판이 8mm라 렌치볼트 머리가 모터에 걸리는데, ChatGPT는 이를 알려 주지 않았습니다. 전체가 피처 하나로 만들어져서 Fusion에서 치수를 고칠 수 없습니다.</p>
+
+<h3>Autodesk Assistant <span class="material">모터 방향 반대</span></h3>
+<div class="figure duo">
+  <img src="./images/assistant-inside.webp" alt="Assistant 브라켓 모터 쪽 — 모터 판 앞에 덧댄 받침 블록" loading="lazy">
+  <img src="./images/assistant-rib-side.webp" alt="Assistant 브라켓 보강판 쪽 — 보강판과 M6 구멍" loading="lazy">
+</div>
+<p>숫자는 다 맞았지만 모터를 보강판 반대쪽에 달아서, 바닥판이 양쪽으로 뻗어 길이가 106mm가 됐습니다. 대신 만들기 전에 질문을 7개 했고, 끝나고 치수표와 출력 방향을 알려 준 점은 가장 좋았습니다.</p>
+
+<h3>슬라이서 화면</h3>
+<p>초록색이 서포트입니다. Claude 것만 서포트가 없습니다.</p>
+<div class="figure duo">
+  <img src="./images/kim-slicer.webp" alt="직접 설계 브라켓 슬라이싱 — 돌출부 아래 초록 서포트" loading="lazy">
+  <img src="./images/claude-slicer.webp" alt="Claude 브라켓 슬라이싱 — 서포트 없음" loading="lazy">
+  <img src="./images/gemini-slicer.webp" alt="Gemini 브라켓 슬라이싱 — 돌출부 아래 초록 서포트" loading="lazy">
+  <img src="./images/gpt-slicer.webp" alt="ChatGPT 브라켓 슬라이싱 — 돌출부 아래 초록 서포트" loading="lazy">
+</div>
+<p class="table-note">왼쪽 위부터 직접 설계, Claude, Gemini, ChatGPT</p>
+
+<div class="callout">
+  <p class="title">정리</p>
+  <ul>
+    <li>숫자를 맞추는 건 AI가 잘합니다. 볼트 머리 자리, 모터 방향처럼 <strong>쓰임새에서 나오는 판단</strong>은 직접 확인해야 합니다.</li>
+    <li>AI가 "확인했다"고 해도 Fusion에서 <kbd>I</kbd>(측정)로 직접 재 봅니다.</li>
+    <li>고칠 때는 증상이 아니라 원인을 말합니다.</li>
+  </ul>
+</div>
+</section>
+
+<footer>
+  제작일 2026.11.09<br>
+  경북대학교 하드웨어 제작 동아리 UB
+</footer>
+
+</div>
+<script src="../../assets/reveal.js"></script>
+<script>
+// 요청 틀 복사 버튼
+document.querySelectorAll('.copy-btn').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var t = document.getElementById(b.dataset.copy).innerText;
+    var done = function () { b.textContent = '복사됨'; setTimeout(function () { b.textContent = '복사'; }, 1500); };
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, function () {});
+  });
+});
+</script>
+</body>
+</html>
