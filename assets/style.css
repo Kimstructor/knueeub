@@ -203,3 +203,27 @@ footer{line-height:1.9}
 .hub a strong{display:block;font-size:17.5px}
 .hub a span{display:block;font-size:14.5px;color:var(--ink-soft);margin-top:2px}
 .hub a:hover strong{color:var(--solder)}
+
+/* 코드·요청 문장 블록 (workshops/fusion-ai) */
+pre{
+  background:var(--panel);border:1px solid var(--rule);border-radius:6px;
+  padding:16px 18px;margin:18px 0 24px;overflow-x:auto;
+  font-size:14.5px;line-height:1.7;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;
+}
+pre code{font-family:Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:inherit;background:none;border:0;padding:0}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;overflow-wrap:anywhere}
+p code,li code,td code{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:1px 5px}
+kbd{
+  display:inline-block;min-width:1.6em;padding:0 6px;text-align:center;
+  font-family:inherit;font-size:.85em;font-weight:600;line-height:1.7;
+  background:var(--panel);border:1px solid var(--rule);border-bottom-width:2px;border-radius:4px;
+}
+.copy-box{position:relative}
+.copy-box .copy-btn{position:absolute;top:10px;right:10px;padding:5px 14px;font-size:14px}
+table.wrap-first td:first-child{white-space:normal}
+
+/* 사진 두 장씩 나란히 */
+.figure.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.figure.duo img{width:100%;height:auto}
+table.keep-2 th,table.keep-2 td:nth-child(2){white-space:nowrap}
+td .sub{display:block;font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:2px}
