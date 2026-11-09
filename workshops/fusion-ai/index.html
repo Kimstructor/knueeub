@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fusion 기초와 AI 모델링 · UB</title>
+<title>Fusion 기초와 AI 모델링</title>
 <meta name="description" content="Fusion 설치와 기본 조작, AI를 Fusion에 연결하는 법, AI 네 가지에게 같은 브라켓을 맡겨 본 결과를 정리했습니다">
 <meta property="og:site_name" content="KNU-EE-UB">
-<meta property="og:title" content="UB 3D 실습 — Fusion 기초와 AI 모델링">
+<meta property="og:title" content="Fusion 기초와 AI 모델링">
 <meta property="og:description" content="Fusion 설치와 기본 조작, AI 연결, AI 비교">
 <meta property="og:image" content="https://kimstructor.github.io/knueeub/assets/og/fusion-ai.png">
 <meta property="og:url" content="https://kimstructor.github.io/knueeub/workshops/fusion-ai/">
@@ -19,7 +19,7 @@
 <div class="wrap">
 
 <header>
-  <p class="kicker">UB 3D 실습 · Fusion</p>
+  <p class="kicker">3D 실습 · Fusion</p>
   <h1>Fusion 기초와 AI 모델링</h1>
   <p class="lede">Fusion을 설치하고 기본 조작을 익힌 뒤, AI에게 Fusion 모델링을 맡기는 방법과 실제로 맡겨 본 결과를 정리했습니다.</p>
 </header>
@@ -29,11 +29,13 @@
   <ul>
     <li><a href="#install"><span class="n">1</span>설치</a></li>
     <li><a href="#basics"><span class="n">2</span>기본 조작</a></li>
-    <li><a href="#connect"><span class="n">3</span>AI 연결</a></li>
-    <li><a href="#prompt"><span class="n">4</span>AI에게 요청하는 법</a></li>
-    <li><a href="#compare"><span class="n">5</span>AI 비교</a></li>
-    <li><a href="#example"><span class="n">6</span>프로젝트 예시</a></li>
-    <li><a href="#self"><span class="n">7</span>직접 설계해야 할 때</a></li>
+    <li><a href="#follow"><span class="n">3</span>브라켓 따라 만들기</a></li>
+    <li><a href="#files"><span class="n">4</span>파일 받기와 고치기</a></li>
+    <li><a href="#connect"><span class="n">5</span>AI 연결</a></li>
+    <li><a href="#prompt"><span class="n">6</span>AI에게 요청하는 법</a></li>
+    <li><a href="#compare"><span class="n">7</span>AI 비교</a></li>
+    <li><a href="#example"><span class="n">8</span>프로젝트 예시</a></li>
+    <li><a href="#self"><span class="n">9</span>직접 설계해야 할 때</a></li>
   </ul>
 </nav>
 
@@ -84,6 +86,18 @@
   </tbody>
 </table>
 
+<h3>새 디자인 종류</h3>
+<p>새 디자인을 만들 때 종류를 고릅니다. 자주 쓰는 종류는 <strong>환경설정(Preferences) → 일반</strong>에서 기본값으로 정해 둘 수 있습니다.</p>
+<table>
+  <thead><tr><th>종류</th><th>언제 고르나</th></tr></thead>
+  <tbody>
+    <tr><td>부품 디자인</td><td>부품 하나를 만들 때. 실습 브라켓처럼 출력할 부품 하나는 이걸 고릅니다.</td></tr>
+    <tr><td>조립품 디자인</td><td>따로 만든 부품 파일을 불러와 서로 맞출 때. 모델링 도구는 기본으로 꺼져 있습니다.</td></tr>
+    <tr><td>하이브리드 디자인</td><td>한 파일 안에서 여러 부품을 같이 만들고 맞출 때. 예전부터 쓰던 Fusion 방식입니다.</td></tr>
+  </tbody>
+</table>
+<p class="table-note">부품 디자인은 나중에 조립품이나 하이브리드로 바꿀 수 있습니다. 반대로는 안에 하위 부품이 없을 때만 바뀝니다.</p>
+
 <h3>모델링 흐름</h3>
 <ol>
   <li><strong>스케치 만들기</strong> → 그릴 평면이나 면을 고릅니다.</li>
@@ -100,7 +114,59 @@
 </section>
 
 <section class="section reveal">
-<h2 id="connect"><span class="sec-n">3</span>AI 연결</h2>
+<h2 id="follow"><span class="sec-n">3</span>브라켓 따라 만들기</h2>
+
+<p>아래 AI 비교에 나오는 NEMA17 모터 브라켓을 직접 만들어 봅니다. 대칭 돌출 같은 기능은 쓰지 않고 제일 기본 기능만 씁니다. 일단 끝까지 만들어 보는 게 먼저고, 다른 기능은 나중에 익히면 됩니다.</p>
+
+<ol>
+  <li><strong>부품 디자인</strong>으로 새 디자인을 만들고, <strong>XZ 평면</strong>에 스케치를 만듭니다.</li>
+  <li>선으로 L자를 그립니다. 가로 58mm, 세로 50mm, 두께 5mm입니다.</li>
+  <li>스케치를 마치고 L자를 48.5mm 돌출합니다.</li>
+  <li>세운 판의 안쪽 면에 스케치를 만들고, 바닥에서 33.75mm 높이의 판 가운데에 지름 22.3mm 원을 그립니다.</li>
+  <li>같은 중심에 31mm 중심 직사각형을 그리고, 네 모서리에 지름 3.2mm 원(볼트 구멍)을 그립니다.</li>
+  <li>스케치를 마치고 원 5개를 잘라내기로 뚫습니다.</li>
+  <li>4번 스케치를 다시 편집해서 판 가장자리에 폭 3mm 테두리를 그리고 2mm 돌출합니다.</li>
+  <li>옆면(L자가 보이는 면)에 L자 안쪽을 채우는 삼각형을 그리고 3mm 돌출합니다. 반대쪽 옆면도 똑같이 합니다.</li>
+  <li>프로파일에 닿는 바닥면에 스케치를 만들고, 중심 지름 원으로 가운데를 찾아 폭 6.5mm 직사각형을 길게 그립니다.</li>
+  <li>T너트 자리로 길이 11mm 중심 직사각형 2개를 그리고, 그 안에 지름 6.3mm 원(볼트 구멍)을 그립니다.</li>
+  <li>원은 잘라내기로 뚫고, 11mm 자리를 뺀 폭 6.5mm 부분은 3.5mm 돌출합니다.</li>
+</ol>
+<p class="table-note">치수는 아래 "AI에게 요청하는 법"의 채운 예시와 같습니다.</p>
+</section>
+
+<section class="section reveal">
+<h2 id="files"><span class="sec-n">4</span>파일 받기와 고치기</h2>
+
+<p>다른 사람이 만든 모델은 아래 사이트에서 받을 수 있습니다. 모델 페이지의 다운로드 버튼으로 받아 슬라이서에서 열면 됩니다.</p>
+<ul class="spec">
+  <li><span class="k"><a href="https://makerworld.com">MakerWorld</a></span><span class="v">뱀부랩이 운영. Bambu Studio에서 바로 열 수 있습니다</span></li>
+  <li><span class="k"><a href="https://www.printables.com">Printables</a></span><span class="v">프루사가 운영</span></li>
+  <li><span class="k"><a href="https://www.thingiverse.com">Thingiverse</a></span><span class="v">오래된 모델 공유 사이트</span></li>
+</ul>
+
+<h3>파일 형식</h3>
+<table class="wrap-first">
+  <thead><tr><th>형식</th><th>안에 든 것</th><th>Fusion에서 고치기</th></tr></thead>
+  <tbody>
+    <tr><td>STL, OBJ</td><td>삼각형 면(메쉬)만</td><td>어려움</td></tr>
+    <tr><td>3MF</td><td>메쉬. 색이나 출력 설정이 같이 들어 있기도 함</td><td>어려움</td></tr>
+    <tr><td>STEP</td><td>솔리드</td><td>면을 밀고 당기거나 구멍을 더하는 정도는 쉬움</td></tr>
+    <tr><td>F3D</td><td>Fusion 원본(스케치, 타임라인 포함)</td><td>치수까지 그대로 고칠 수 있음</td></tr>
+  </tbody>
+</table>
+
+<h3>STL을 고쳐야 할 때</h3>
+<p>STL은 삼각형 면의 덩어리라서, 구멍 지름이나 길이를 숫자로 바꿀 수 없습니다. 고칠 일이 있으면 먼저 STEP이나 F3D 파일도 같이 올라와 있는지 확인하고, 없으면 아래 방법을 씁니다.</p>
+<ul>
+  <li><strong>크기 조절, 자르기, 글자나 구멍 더하기:</strong> Fusion까지 갈 필요 없이 슬라이서에서 됩니다.</li>
+  <li><strong>Fusion에서 솔리드로 바꾸기:</strong> <strong>삽입 → 메쉬 삽입</strong>으로 불러온 뒤 <strong>메쉬 탭 → 수정 → 메쉬 변환(Convert Mesh)</strong>을 씁니다. 각진 부품은 Prismatic 방법으로 바꾸면 평면과 원통 면이 하나로 합쳐져서 고칠 만해집니다. 곡면이 많은 모양은 삼각형이 그대로 면으로 남아서 무겁고 고치기 어렵습니다. Prismatic은 개인용 라이선스에서는 안 됩니다.</li>
+  <li><strong>다시 그리기:</strong> 치수를 재서 직접 다시 그리는 게 빠를 때가 많습니다. 메쉬를 불러와 옆에 두고 보면서 그리면 됩니다.</li>
+</ul>
+<p>STL을 STEP으로 바꿔 주는 다른 프로그램이나 사이트도 원리는 같아서, 삼각형을 면으로 바꿀 뿐 원래 치수를 되살리지는 못합니다.</p>
+</section>
+
+<section class="section reveal">
+<h2 id="connect"><span class="sec-n">5</span>AI 연결</h2>
 
 <p>Fusion 안에 들어 있는 MCP 서버를 켜고 AI 데스크톱 앱을 연결하면, 말로 지시한 내용을 AI가 Fusion에서 직접 모델링합니다. chatgpt.com, claude.ai 같은 웹 채팅에서는 바로 연결되지 않습니다.</p>
 
@@ -179,7 +245,7 @@
 </section>
 
 <section class="section reveal">
-<h2 id="prompt"><span class="sec-n">4</span>AI에게 요청하는 법</h2>
+<h2 id="prompt"><span class="sec-n">6</span>AI에게 요청하는 법</h2>
 
 <p>AI에게 치수만 던져 주면 숫자는 맞아도 쓸 수 없는 모양이 나옵니다. 아래 틀로 <strong>무엇에 쓰는지</strong>까지 알려 주고, 만들기 전에 질문하게 하면 결과가 훨씬 좋아집니다.</p>
 
@@ -230,7 +296,7 @@ Fusion MCP 도구로 새 디자인에 만들어 줘. 프루사 MK4로 PLA 출력
 </section>
 
 <section class="section reveal">
-<h2 id="compare"><span class="sec-n">5</span>AI 비교</h2>
+<h2 id="compare"><span class="sec-n">7</span>AI 비교</h2>
 
 <p>ChatGPT, Gemini, Autodesk Assistant에게 위의 채운 예시로 같은 NEMA17 모터 브라켓을 맡겼고(ChatGPT는 참고 사진도 넣음), 직접 설계한 것과 Claude 것까지 함께 출력했습니다. Claude 것은 운영진이 여러 번 고쳐 달라고 해서 나온 최종본입니다. <strong>모든 AI가 구멍 간격과 축 높이 같은 숫자는 맞췄습니다.</strong> 차이는 숫자 밖의 판단, 즉 볼트 머리가 들어갈 자리, 모터 방향, 서포트에서 났습니다.</p>
 
@@ -318,7 +384,7 @@ Fusion MCP 도구로 새 디자인에 만들어 줘. 프루사 MK4로 PLA 출력
 </section>
 
 <section class="section reveal">
-<h2 id="example"><span class="sec-n">6</span>프로젝트 예시</h2>
+<h2 id="example"><span class="sec-n">8</span>프로젝트 예시</h2>
 
 <p>손떨림이 있는 사람이 직접 글씨를 쓰도록 돕는 탁상형 장치를 AI와 함께 설계한 과정입니다. 무엇을 AI에게 맡기고 무엇을 직접 정했는지를 중심으로 정리했습니다.</p>
 
@@ -395,7 +461,7 @@ Fusion MCP 도구로 새 디자인에 만들어 줘. 프루사 MK4로 PLA 출력
 </section>
 
 <section class="section reveal">
-<h2 id="self"><span class="sec-n">7</span>직접 설계해야 할 때</h2>
+<h2 id="self"><span class="sec-n">9</span>직접 설계해야 할 때</h2>
 
 <p>AI에게 맡기더라도 직접 설계할 줄은 알아야 합니다. AI가 만든 모델이 맞는지 판단하고 틀린 곳을 원인으로 짚어 고치게 하려면, 그 부품을 직접 그릴 수 있을 만큼 알아야 하기 때문입니다.</p>
 
@@ -414,8 +480,7 @@ Fusion MCP 도구로 새 디자인에 만들어 줘. 프루사 MK4로 PLA 출력
 </section>
 
 <footer>
-  제작일 2026.11.09<br>
-  경북대학교 하드웨어 제작 동아리 UB
+  제작일 2026.11.09
 </footer>
 
 </div>
