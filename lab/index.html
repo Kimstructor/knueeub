@@ -122,6 +122,18 @@ h2{font-size:29px;line-height:1.32;font-weight:750;letter-spacing:-.022em}
 }
 .note{margin-top:30px;color:var(--ink-soft)}
 
+/* 실제 사례: 질문에서 논문까지 */
+.case{margin:0;padding:30px 32px 32px;border-radius:16px;background:var(--tint);border:1px solid var(--line)}
+.flow{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative}
+.flow::before{content:"";position:absolute;left:12.5%;right:12.5%;top:9px;height:3px;background:var(--gold)}
+.flow li{position:relative;padding-top:32px;text-align:center;font-size:15px;line-height:1.4;font-weight:650;color:var(--ink-soft)}
+.flow li::before{content:"";position:absolute;left:50%;top:0;width:21px;height:21px;margin-left:-10.5px;border-radius:50%;
+  box-sizing:border-box;background:var(--tint);border:3px solid var(--gold)}
+.flow li:last-child{color:var(--green)}
+.flow li:last-child::before{background:var(--gold)}
+.case p{margin-top:26px;padding-top:24px;border-top:1px solid #cbd8d0;font-size:18px;line-height:1.75}
+.case strong{font-weight:700;color:var(--green)}
+
 /* 만들 수 있는 것, 장비 */
 .band{background:var(--tint)}
 .band .row + .row{border-top-color:#cbd8d0}
@@ -157,6 +169,9 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid rgba(243,246,241,.2
   .btn{display:block;text-align:center}
   h2{font-size:25px}
   .who li,.steps li{font-size:17px}
+  .case{padding:24px 18px 26px}
+  .flow li{font-size:13px;padding-top:30px}
+  .case p{font-size:17px;margin-top:22px;padding-top:20px}
   .spec li{grid-template-columns:minmax(0,1fr);gap:2px}
   .closing{padding-top:56px}
   .gallery{padding-top:44px}
@@ -237,6 +252,18 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid rgba(243,246,241,.2
         </ol>
         <p class="note">연구 내용은 외부에 공개하지 않습니다.</p>
       </div>
+    </section>
+    <section class="row">
+      <h2>실제 사례</h2>
+      <figure class="case">
+        <ol class="flow" aria-label="진행 과정">
+          <li>질문</li>
+          <li>교수님께 설명</li>
+          <li>함께 제작</li>
+          <li>논문 게재</li>
+        </ol>
+        <p>한 연구실의 학부연구생이 실험용 장치를 어떻게 만들어야 할지 물어 왔습니다. 방법을 정리해 해당 연구실 교수님께 설명드렸고, 제작을 맡게 되어 학부연구생과 함께 장치를 만들었습니다. 이 장치로 진행한 연구는 심사를 거쳐 <strong>학회지에 공동 제1저자 논문으로 게재</strong>되었습니다.</p>
+      </figure>
     </section>
   </div>
 
