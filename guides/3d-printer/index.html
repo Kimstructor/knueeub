@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D 프린터 사용 안내 · KNU-EE-UB</title>
+<meta name="description" content="UB 프루사 MK4·MK3S 사용법 — 필라멘트, 시트, 출력 방향, 프루사슬라이서 설정, 출력 중 대처">
+<meta property="og:site_name" content="KNU-EE-UB">
+<meta property="og:title" content="UB 3D 프린터 사용 안내">
+<meta property="og:description" content="프루사 MK4·MK3S 사용법과 프루사슬라이서 설정">
+<meta property="og:image" content="https://kimstructor.github.io/knueeub/assets/og/3d-printer.png">
+<meta property="og:url" content="https://kimstructor.github.io/knueeub/guides/3d-printer/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="../../assets/style.css?v=3">
+</head>
+<body>
+<div class="wrap pg-printer">
+
+<header>
+  <p class="kicker">UB · 3D 프린터</p>
+  <h1>3D 프린터 사용 안내</h1>
+  <p class="lede">UB 프루사 프린터를 혼자서도 쓸 수 있게 정리했습니다.</p>
+</header>
+
+<div class="callout warn must">
+  <p class="title">이것만은 꼭</p>
+  <ul>
+    <li>슬라이서에서 프린터 기종을 고르고, 프린터에 적힌 현재 노즐 직경과 같은 노즐을 골라 주세요.</li>
+    <li>필라멘트는 선반 맨 위, 스풀 옆면에 PLA+, eco PLA, highspeed PLA라고 적힌 것만 쓰고, 슬라이서에서는 Generic PLA로 설정해 주세요.</li>
+    <li>시트 인쇄면은 손대지 말고 가장자리만 잡아 주세요.</li>
+    <li>첫 레이어가 시트에 붙는 걸 확인하고 자리를 뜨세요.</li>
+    <li>드드득 긁는 소리가 계속되면 노브 바로 아래 리셋 버튼을 눌러 바로 멈춰 주세요.</li>
+    <li>뺀 필라멘트는 끝을 꼭 스풀 옆 구멍에 끼워 두세요.</li>
+    <li>프린터를 쓰기 전에 김도윤에게 개인 카톡으로 쓴다고만 알려 주세요. 모르는 게 있을 때도 혼자 씨름하지 말고 카톡 주세요.</li>
+  </ul>
+</div>
+
+<nav class="toc" aria-label="목차">
+  <h2>목차</h2>
+  <ul>
+    <li><a href="#printers"><span class="n">1</span>프린터 소개</a></li>
+    <li><a href="#filament"><span class="n">2</span>필라멘트</a></li>
+    <li><a href="#sheet"><span class="n">3</span>시트</a></li>
+    <li><a href="#orient"><span class="n">4</span>출력 방향 정하기</a></li>
+    <li><a href="#slicer"><span class="n">5</span>프루사슬라이서</a></li>
+    <li><a href="#mk3s"><span class="n">6</span>MK3S로 출력하기</a></li>
+    <li><a href="#mk4"><span class="n">7</span>MK4로 출력하기</a></li>
+    <li><a href="#printing"><span class="n">8</span>출력 중</a></li>
+    <li><a href="#cleanup"><span class="n">9</span>출력 후 정리</a></li>
+    <li><a href="#help"><span class="n">10</span>고장과 문의</a></li>
+  </ul>
+</nav>
+
+<section class="section reveal">
+<h2 id="printers"><span class="sec-n">1</span>프린터 소개</h2>
+
+<ul class="spec">
+  <li><span class="k">프린터</span><span class="v">Original Prusa MK4 1대, MK3S 3대</span></li>
+  <li><span class="k">시트</span><span class="v">스무스 PEI</span></li>
+  <li><span class="k">필라멘트</span><span class="v">PLA (슬라이서에서는 Generic PLA)</span></li>
+  <li><span class="k">슬라이서</span><span class="v">프루사슬라이서</span></li>
+</ul>
+
+<figure class="figure">
+  <img src="./images/printers-all.webp" alt="선반 위 프린터 4대. 왼쪽부터 MK4, MK3S, MK3S, 챔버를 씌운 MK3S" loading="lazy">
+  <figcaption>왼쪽부터 MK4, MK3S, MK3S, 챔버를 씌운 MK3S</figcaption>
+</figure>
+<p>맨 오른쪽 MK3S는 ABS 같은 소재를 출력하려고 챔버를 씌워 둔 것입니다. 기종마다 쓰는 법이 달라서 <a href="#mk3s">6장(MK3S)</a>과 <a href="#mk4">7장(MK4)</a>에 따로 정리했습니다.</p>
+
+<h3>노즐 직경</h3>
+<p>노즐은 바꿔 끼울 수 있어서 프린터마다 다를 수 있습니다. 프린터에 적힌 현재 노즐 직경을 확인하고, 슬라이서에서 같은 노즐을 골라 주세요. 다르게 고르면 출력이 제대로 나오지 않습니다.</p>
+<figure class="figure half">
+  <img src="./images/nozzle-label.webp" alt="프린터 프레임에 붙은 '현용 0.4' 표시" loading="lazy">
+  <figcaption>프린터에 붙어 있는 현재 노즐 직경. ‘현용 0.4’는 지금 0.4mm 노즐이 끼워져 있다는 뜻입니다.</figcaption>
+</figure>
+
+<div class="callout warn">
+  <p class="title">출력 중에는 노즐과 베드에 손대지 마세요</p>
+  <p>챔버를 씌운 한 대를 빼면 프린터가 열려 있어서 노즐과 베드가 그대로 드러나 있습니다. PLA를 뽑을 때도 노즐은 200℃가 넘고 베드는 60℃ 정도라서, 출력 중이거나 막 끝난 직후에는 만지지 마세요.</p>
+</div>
+</section>
+
+<section class="section reveal">
+<h2 id="filament"><span class="sec-n">2</span>필라멘트</h2>
+
+<h3>쓰는 필라멘트</h3>
+<p>선반 맨 위에 있는, 스풀 옆면에 <strong>PLA+</strong>, <strong>eco PLA</strong>, <strong>highspeed PLA</strong>라고 적힌 것만 써 주세요. 같은 선반에 우드나 돌가루가 섞인 필라멘트도 있으니 스풀 옆면 표기를 꼭 확인해 주세요.</p>
+<p>세 가지 모두 슬라이서에서는 <strong>Generic PLA</strong>로 설정하면 됩니다.</p>
+<div class="figure duo">
+  <figure>
+    <img src="./images/filament-shelf.webp" alt="선반 맨 위에 놓인 필라멘트 스풀들" loading="lazy">
+    <figcaption>선반 맨 위 필라멘트</figcaption>
+  </figure>
+  <figure>
+    <img src="./images/spool-label.webp" alt="스풀 옆면 라벨. Name: PLA+" loading="lazy">
+    <figcaption>스풀 옆면 표기. Name이 PLA+로 적혀 있습니다.</figcaption>
+  </figure>
+</div>
+
+<h3>넣고 뺄 때 주의할 것</h3>
+<p>넣고 빼는 방법은 기종마다 달라서 <a href="#mk3s">6장</a>과 <a href="#mk4">7장</a>에 있습니다. 두 기종 모두 아래는 같습니다.</p>
+<ul>
+  <li>넣기 전에 필라멘트 끝을 니퍼로 비스듬히 잘라 주세요. 끝이 휘었거나 녹아서 뭉친 채로 넣으면 잘 안 들어가고 막힙니다.</li>
+  <li>노즐이 식은 상태에서는 필라멘트를 억지로 뽑지 마세요.</li>
+</ul>
+<div class="callout warn">
+  <p class="title">뺀 필라멘트는 끝을 꼭 스풀 구멍에 끼워 두세요</p>
+  <p>스풀 옆면 가장자리에 있는 구멍에 필라멘트 끝을 끼워 고정합니다. 그냥 두면 감긴 필라멘트가 풀려서 엉키고, 다음 사람이 못 씁니다.</p>
+</div>
+<figure class="figure half">
+  <img src="./images/spool-tuck.webp" alt="스풀 옆면 가장자리 구멍에 필라멘트 끝을 끼워 고정한 모습" loading="lazy">
+  <figcaption>스풀 옆면 구멍에 끝을 끼운 모습</figcaption>
+</figure>
+<div class="callout">
+  <p class="title">안 들어가면 억지로 밀지 마세요</p>
+  <p>넣기와 빼기를 몇 번 해도 안 되면 그대로 두고 연락 주세요. 계속 반복하면 필라멘트만 버려집니다.</p>
+</div>
+</section>
+
+<section class="section reveal">
+<h2 id="sheet"><span class="sec-n">3</span>시트</h2>
+<p>UB 프린터 시트는 모두 <strong>스무스 PEI</strong>(매끈한 면)입니다.</p>
+
+<h3>장착</h3>
+<p>베드 뒤쪽에 나사 두 개가 튀어나와 있습니다. 시트 뒤쪽 홈을 이 나사에 끼우고, 앞쪽을 든 채로 손을 놓으면 자석으로 알맞게 붙습니다. 뺄 때는 앞쪽을 들어 올리면 됩니다.</p>
+<p>베드와 시트 사이에 필라멘트 조각이 끼면 그 자리가 눌려 자국이 남고 첫 레이어도 고르게 붙지 않습니다. 시트를 올리기 전에 베드 위가 깨끗한지 확인해 주세요.</p>
+<figure class="figure half">
+  <img src="./images/sheet-mount.webp" alt="시트 뒤쪽 홈을 베드 나사에 끼우고 앞쪽을 들고 있는 모습" loading="lazy">
+  <figcaption>뒤쪽 홈을 나사에 끼운 상태. 이대로 손을 놓으면 됩니다.</figcaption>
+</figure>
+
+<h3>인쇄면 관리</h3>
+<div class="callout warn">
+  <p class="title">맨손으로 인쇄면을 잡지 마세요</p>
+  <p>손의 유분이 묻으면 그 자리만 안 붙습니다. 가장자리만 잡아 주세요.</p>
+</div>
+
+<h3>출력물 떼어내기</h3>
+<ol>
+  <li>시트가 식을 때까지 기다립니다. 뜨거울 때 떼면 출력물이 휘거나 시트가 상합니다.</li>
+  <li>시트를 빼서 살짝 구부리면 출력물이 떨어집니다. 이때도 인쇄면에 손이 닿지 않게 해 주세요.</li>
+  <li>그래도 안 떨어지면 칼이나 금속 도구로 긁지 말고 물어봐 주세요.</li>
+</ol>
+
+<h3>세척</h3>
+<p>먼지가 쌓였거나 완벽하게 뽑고 싶을 때는, 시트가 식은 상태에서 <strong>‘소독용 에탄올’이라고 적힌 스프레이</strong>를 뿌리고 향 없는 뻣뻣한 휴지로 닦아 주세요.</p>
+<p>물티슈는 안 됩니다. 피부용 성분이 남아서 오히려 안 붙습니다.</p>
+</section>
+
+<section class="section reveal">
+<h2 id="orient"><span class="sec-n">4</span>출력 방향 정하기</h2>
+<p>3D 프린터는 얇은 층을 한 층씩 쌓아서 모양을 만듭니다. 그래서 같은 모델이라도 어느 방향으로 놓고 뽑느냐에 따라 강도와 정밀도가 달라집니다. 부품을 뽑을 때는 슬라이서에서 방향부터 정해 주세요.</p>
+
+<h3>층과 층 사이가 약합니다</h3>
+<p>한 층 안에서는 플라스틱이 길게 이어져 있지만, 층과 층은 위아래로 붙어 있기만 합니다. 그래서 높이 방향(Z)으로 층을 떼어내는 힘을 받으면 쉽게 갈라집니다.</p>
+<p>예를 들어 긴 막대를 세워서 뽑으면 층이 막대를 가로로 끊어 놓은 모양이 되어, 휘는 힘에 층 사이가 쉽게 부러집니다. 눕혀서 뽑으면 층이 막대 길이 방향으로 이어져서 훨씬 튼튼합니다. 힘을 받는 부품은 힘이 걸리는 방향이 층을 가르지 않게 놓아 주세요.</p>
+
+<h3>바닥과 평행한 모양(XY)이 정확합니다</h3>
+<p>바닥과 평행한 평면(XY)의 모양은 노즐이 그대로 따라 그려서 정확하게 나옵니다. 높이 방향은 레이어 높이(보통 0.2mm)만큼 계단이 져서, 경사면이나 곡면은 구조상 정밀하게 만들 수 없습니다.</p>
+<p>구멍이 대표적입니다. 위아래로 뚫리게 세워서 뽑으면 둥글게 나오고, 눕혀서 뽑으면 계단이 지고 위쪽이 처집니다. 정밀하게 맞춰야 하는 구멍과 모양은 바닥과 평행하게 오도록 놓아 주세요.</p>
+<figure class="figure half">
+  <img src="./images/holes-compare.webp" alt="왼쪽 판의 구멍은 둥글고, 오른쪽 막대의 구멍은 길쭉함" loading="lazy">
+  <figcaption>왼쪽은 구멍이 둥글게 나왔고, 오른쪽은 구멍을 눕혀서 뽑아 길쭉하게 나왔습니다.</figcaption>
+</figure>
+
+<h3>오버행과 브릿지</h3>
+<p>아래에 받쳐 주는 것 없이 튀어나온 부분을 <strong>오버행</strong>이라고 합니다. 허공에는 뽑을 수 없어서, 수직에서 45° 정도 기울어진 면까지는 바로 아래층이 받쳐 줘서 뽑히지만 그보다 더 누우면 처지거나 무너집니다. 이럴 때는 서포트를 넣거나, 방향을 바꿔서 오버행이 생기지 않게 합니다.</p>
+<p>양쪽 끝이 받쳐진 짧은 수평 구간은 서포트 없이도 다리처럼 걸쳐서 뽑힙니다. 이걸 <strong>브릿지</strong>라고 합니다. 길어지면 가운데가 처집니다.</p>
+
+<h3>서포트</h3>
+<p>서포트는 오버행 아래에 세우는 받침입니다. 출력 후 손이나 펜치로 떼어냅니다. 서포트가 닿았던 면은 거칠게 남으니, 정밀하게 맞춰야 하거나 보이는 면은 서포트에 닿지 않게 방향을 잡아 주세요.</p>
+<p>넓고 평평한 면을 바닥에 두면 시트에 잘 붙고 서포트도 줄어듭니다.</p>
+</section>
+
+<section class="section reveal">
+<h2 id="slicer"><span class="sec-n">5</span>프루사슬라이서</h2>
+
+<h3>설치와 처음 설정</h3>
+<p>내려받기: <a href="https://www.prusa3d.com/p/prusaslicer/">prusa3d.com/p/prusaslicer</a></p>
+<ol>
+  <li>처음 실행하면 <strong>구성 마법사</strong>가 뜹니다. 나중에 다시 열려면 위쪽 메뉴 <strong>구성 노트 → 구성 및 마법사</strong>를 누릅니다.</li>
+  <li><strong>Prusa Research</strong> 페이지의 MK4 패밀리에서 <strong>Original Prusa MK4 Input Shaper</strong>의 <strong>0.4 mm 노즐</strong>을 체크합니다.</li>
+  <li>같은 페이지의 MK3 패밀리에서 <strong>Original Prusa i3 MK3S &amp; MK3S+</strong>를 체크합니다. 프린터에 적힌 노즐이 0.4가 아니면 대체 노즐에서 그 직경도 체크합니다.</li>
+  <li><strong>필 라 멘 트</strong> 페이지에서 종류는 PLA, 벤더는 Generic을 고르면 나오는 <strong>Generic PLA</strong>가 체크되어 있는지 확인합니다.</li>
+  <li><strong>보기 모드</strong> 페이지에서 <strong>전문가 모드</strong>를 고르고 <strong>완료(Finish)</strong>를 누릅니다.</li>
+  <li>화면이 한국어가 아니면 <strong>구성 노트(영어 화면이면 Configuration) → 언어</strong>에서 한국어로 바꿉니다. 이 안내서의 화면은 한국어 기준입니다.</li>
+</ol>
+<figure class="figure shot">
+  <img src="./images/wizard-mk4.webp" alt="구성 마법사 MK4 패밀리. Original Prusa MK4 Input Shaper의 0.4 mm 노즐 체크" loading="lazy">
+  <figcaption>MK4 패밀리에서 Original Prusa MK4 Input Shaper의 0.4 mm 노즐</figcaption>
+</figure>
+<figure class="figure shot">
+  <img src="./images/wizard-mk3s.webp" alt="구성 마법사 MK3 패밀리. Original Prusa i3 MK3S &amp; MK3S+와 대체 노즐 체크" loading="lazy">
+  <figcaption>MK3 패밀리에서 Original Prusa i3 MK3S &amp; MK3S+ (대체 노즐은 쓰는 노즐에 맞춰)</figcaption>
+</figure>
+<figure class="figure shot half">
+  <img src="./images/wizard-mode.webp" alt="구성 마법사 보기 모드. 전문가 모드 선택" loading="lazy">
+  <figcaption>보기 모드에서 전문가 모드</figcaption>
+</figure>
+
+<h3>화면 구성</h3>
+<figure class="figure shot">
+  <img src="./images/slicer-screen.webp" alt="프루사슬라이서 화면. 1 위쪽 탭, 2 모드, 3 출력 설정·필라멘트·프린터, 4 서포트·채움·테두리, 5 왼쪽 도구, 6 개체 조작, 7 바로 슬라이스" loading="lazy">
+</figure>
+<ol class="marks">
+  <li><span class="m">1</span><span><strong>위쪽 탭:</strong> 플레이트는 모델을 올리고 슬라이싱하는 화면, 출력 설정은 아래 <a href="#settings">설정 항목</a>을 바꾸는 곳입니다. 필라멘트와 프린터 설정은 건드리지 않습니다. Printables는 모델을 찾는 탭입니다.</span></li>
+  <li><span class="m">2</span><span><strong>모드:</strong> 전문가 모드로 둡니다. 모드에 따라 보이는 설정 수가 다릅니다.</span></li>
+  <li><span class="m">3</span><span><strong>출력 설정 · 필라멘트 · 프린터:</strong> 아래 <a href="#presets">고르기</a>에서 설명합니다.</span></li>
+  <li><span class="m">4</span><span><strong>서포트 · 채움 · 테두리:</strong> 자주 바꾸는 설정을 바로 바꾸는 곳입니다. 아래 <a href="#quick">간단 설정</a>에서 설명합니다.</span></li>
+  <li><span class="m">5</span><span><strong>왼쪽 도구:</strong> 모델을 움직이고 돌리는 도구입니다. 바로 아래 표에 있습니다.</span></li>
+  <li><span class="m">6</span><span><strong>개체 조작:</strong> 고른 모델의 위치, 회전 각도, 크기를 숫자로 바꿉니다.</span></li>
+  <li><span class="m">7</span><span><strong>바로 슬라이스:</strong> 설정을 마친 뒤 누릅니다.</span></li>
+</ol>
+
+<table class="wrap-first">
+  <caption>왼쪽 도구 (괄호 안은 단축키)</caption>
+  <thead><tr><th>화면 이름</th><th>하는 일</th></tr></thead>
+  <tbody>
+    <tr><td>이동 (M) · 크기 (S) · 회전 (R)</td><td>모델을 옮기고, 키우고 줄이고, 돌립니다.</td></tr>
+    <tr><td>물체(Gizmo)를 베드위로 (F)</td><td>누른 뒤 모델의 면을 클릭하면 그 면이 시트에 닿게 돌아갑니다. 출력 방향을 정할 때(<a href="#orient">4장</a>) 가장 많이 씁니다.</td></tr>
+    <tr><td>잘라내기 (C)</td><td>모델을 평면으로 잘라 나눕니다.</td></tr>
+    <tr><td>페인트 온 지원 (L)</td><td>서포트가 필요한 곳을 직접 칠합니다.</td></tr>
+    <tr><td>솔기 페인팅 (P)</td><td>솔기(층마다 벽이 시작되는 자리)를 둘 곳을 칠합니다.</td></tr>
+    <tr><td>Paint-on fuzzy skin (H)</td><td>겉면을 거칠게 만들 곳을 칠합니다.</td></tr>
+    <tr><td>Measure (U)</td><td>모델의 길이와 거리를 잽니다.</td></tr>
+  </tbody>
+</table>
+
+<h3 id="presets">프린터 · 필라멘트 · 출력 설정 고르기</h3>
+<ul>
+  <li><strong>프린터:</strong> MK3S는 <strong>Original Prusa i3 MK3S &amp; MK3S+</strong>, MK4는 <strong>Original Prusa MK4 Input Shaper 0.4 nozzle</strong>입니다. 노즐이 0.4가 아니면 이름 뒤에 노즐 직경이 붙은 것(예: 0.6 nozzle)을 고릅니다. 목록에 없으면 구성 마법사에서 그 노즐을 체크해 추가합니다.</li>
+  <li><strong>필라멘트:</strong> Generic PLA</li>
+  <li><strong>출력 설정:</strong> 레이어 높이와 품질을 묶어 둔 것입니다. 부품은 MK4는 <strong>0.20mm STRUCTURAL</strong>, MK3S는 <strong>0.20mm QUALITY</strong>로 시작하세요. 프루사 설명으로 STRUCTURAL은 정밀도와 강도 위주이고, SPEED는 출력 시간 위주입니다.</li>
+</ul>
+<figure class="figure shot half">
+  <img src="./images/printer-list.webp" alt="프린터 목록. Original Prusa i3 MK3S &amp; MK3S+ 계열과 Original Prusa MK4 Input Shaper 0.4 nozzle 표시" loading="lazy">
+  <figcaption>프린터 목록. MK3S는 노즐별로 이름이 나뉘어 있습니다.</figcaption>
+</figure>
+<div class="figure duo">
+  <figure>
+    <img src="./images/preset-mk4.webp" alt="MK4 출력 설정 목록. 0.20mm STRUCTURAL 표시" loading="lazy">
+    <figcaption>MK4: 0.20mm STRUCTURAL</figcaption>
+  </figure>
+  <figure>
+    <img src="./images/preset-mk3s.webp" alt="MK3S 출력 설정 목록. 0.20mm QUALITY 표시" loading="lazy">
+    <figcaption>MK3S: 0.20mm QUALITY</figcaption>
+  </figure>
+</div>
+
+<h3 id="quick">간단 설정 (서포트 · 채움 · 테두리)</h3>
+<ul>
+  <li><strong>서포트:</strong> 아래 네 가지 중에 고릅니다.
+    <ul>
+      <li><strong>없음:</strong> 서포트를 만들지 않습니다.</li>
+      <li><strong>출력물만 서포트를 지지:</strong> 시트 위에서 올라오는 서포트만 만들고, 출력물 위에는 세우지 않습니다. 번역이 어색한데 원래 뜻은 ‘바닥에서만 서포트’입니다.</li>
+      <li><strong>서포트 지원영역 전용:</strong> 왼쪽 도구의 페인트 온 지원으로 칠한 곳에만 만듭니다.</li>
+      <li><strong>어디에서든:</strong> 필요한 곳 모두에 만듭니다. 출력물 위에도 세웁니다.</li>
+    </ul>
+    MK4 기본값은 ‘서포트 지원영역 전용’이라, 칠하지 않으면 서포트가 생기지 않습니다.</li>
+  <li><strong>채움(infill):</strong> 속을 채우는 비율입니다. 출력 설정의 채우기 밀도와 같은 값입니다.</li>
+  <li><strong>테두리:</strong> 체크하면 첫 층 바깥에 브림을 둘러 시트에 넓게 붙게 합니다. 모서리가 들뜨는 걸 막을 때 켭니다(<a href="#printing">8장</a>).</li>
+</ul>
+<figure class="figure shot half">
+  <img src="./images/support-options.webp" alt="서포트 목록. 없음, 출력물만 서포트를 지지, 서포트 지원영역 전용, 어디에서든" loading="lazy">
+</figure>
+
+<h3 id="settings">설정 항목 설명</h3>
+<p>위쪽 <strong>출력 설정</strong> 탭을 누르면 왼쪽에 페이지 목록이 나옵니다. 전문가 모드에 보이는 항목을 페이지별로 모두 정리했습니다. 페이지 이름을 누르면 펼쳐집니다.</p>
+<ul>
+  <li><span class="key-txt">노란 바탕 굵은 글씨</span>는 부품 강도, 치수, 출력 성공에 직접 영향을 주는 중요한 항목입니다.</li>
+  <li><span class="minor-txt">회색 글씨</span>는 기본값 그대로 둬도 되는 항목입니다.</li>
+  <li>항목 옆 자물쇠가 열린 모양이면 기본값에서 바꾼 것이고, 누르면 기본값으로 돌아갑니다.</li>
+  <li>항목 앞 색 점(초록·노랑·빨강)은 그 항목이 어느 모드부터 보이는지 프루사슬라이서가 표시한 것입니다. 이 안내서의 중요도와는 다릅니다.</li>
+</ul>
+<details class="setpage">
+  <summary>레이어 및 둘레<span class="sum-key">중요: 레이어 높이, 둘레, 탑 솔리드 레이어</span></summary>
+  <div class="inner">
+  <figure class="figure shot"><img src="./images/set-layers.webp" alt="출력 설정의 레이어 및 둘레 페이지 화면" loading="lazy"></figure>
+  <table class="wrap-first settings">
+    <thead><tr><th>항목</th><th>하는 일</th></tr></thead>
+    <tbody>
+    <tr class="grp"><td colspan="2">레이어 높이</td></tr>
+    <tr class="key"><td>레이어 높이</td><td>한 층의 두께입니다. 얇을수록 높이 방향 계단이 작아지고 표면이 매끈해지지만 시간이 오래 걸립니다. 0.4 노즐이면 0.2mm가 무난합니다.</td></tr>
+    <tr class="minor"><td>첫 레이어 높이</td><td>첫 층의 두께입니다. 기본값 그대로 둡니다.</td></tr>
+    <tr class="grp"><td colspan="2">수직 쉘</td></tr>
+    <tr class="key"><td>둘레</td><td>옆벽을 몇 겹 두를지(벽 수)입니다. 부품 강도에 가장 크게 영향을 주고, 볼트 구멍 둘레도 이 벽으로 튼튼해집니다. 힘 받는 부품은 3~4로 올리세요.</td></tr>
+    <tr class="minor"><td>화병 모드(Spiral vase)</td><td>벽 한 겹을 나선으로 쌓아 속이 빈 화병 모양으로 뽑습니다. 부품에는 쓰지 않습니다.</td></tr>
+    <tr class="grp"><td colspan="2">수평 쉘</td></tr>
+    <tr class="key"><td>탑 솔리드 레이어 (상단·하단)</td><td>윗면과 아랫면을 꽉 채워 쌓는 층 수입니다. 적으면 윗면에 속 채움 무늬가 비치거나 약해집니다.</td></tr>
+    <tr class="minor"><td>최소 쉘 두께 (상단·하단)</td><td>층 수와 별개로 윗면·아랫면의 최소 두께를 맞춥니다.</td></tr>
+    <tr class="grp"><td colspan="2">품질(느린 슬라이싱)</td></tr>
+    <tr class="minor"><td>필요한 경우 추가 둘레</td><td>경사진 곳에서 벽 사이가 비면 둘레를 더 넣습니다.</td></tr>
+    <tr class="minor"><td>Extra perimeters on overhangs</td><td>오버행 부분에 둘레를 더 넣어 처짐을 줄입니다. 실험 기능입니다.</td></tr>
+    <tr class="minor"><td>Ensure vertical shell thickness</td><td>경사면에서 옆벽이 얇아지지 않게 속을 더 채웁니다.</td></tr>
+    <tr class="minor"><td>Avoid crossing curled overhangs</td><td>위로 말려 올라간 오버행 위로 노즐이 지나가지 않게 돌아갑니다. 실험 기능입니다.</td></tr>
+    <tr class="minor"><td>교체된 둘레를 피하세요</td><td>이동할 때 벽을 가로지르지 않게 돌아갑니다. 겉면 자국은 줄지만 시간이 늘어납니다.</td></tr>
+    <tr class="minor"><td>경계를 넘어가지 마십시오 - 최대 우회 길이</td><td>바로 위 기능에서 돌아가는 최대 거리입니다.</td></tr>
+    <tr class="minor"><td>얇은 벽(walls) 감지</td><td>벽 두 줄이 안 들어가는 얇은 부분을 한 줄로 뽑습니다.</td></tr>
+    <tr class="minor"><td>Thick bridges</td><td>브릿지를 노즐 굵기로 두껍게 뽑아 덜 처지게 합니다.</td></tr>
+    <tr class="minor"><td>브릿 징 경계선 감지</td><td>공중에 걸친 벽을 찾아 브릿지처럼 뽑습니다.</td></tr>
+    <tr class="grp"><td colspan="2">고급</td></tr>
+    <tr class="minor"><td>재봉선 위치</td><td>층마다 벽을 시작하고 끝내는 자리(솔기)를 어디에 둘지 정합니다. 솔기는 살짝 튀어나오니 끼워 맞추는 면에는 오지 않게 하는 게 좋습니다.</td></tr>
+    <tr class="minor"><td>Seam gap distance</td><td>솔기에서 벽 끝과 시작 사이를 얼마나 띄울지입니다.</td></tr>
+    <tr class="minor"><td>Staggered inner seams</td><td>안쪽 벽들의 솔기를 엇갈리게 둡니다.</td></tr>
+    <tr class="minor"><td>Scarf joint 관련 7개<span class="names">Scarf joint placement, Scarf joint only on smooth perimeters, Scarf start height, Scarf joint around entire perimeter, Scarf joint length, Max scarf joint segment length, Scarf joint on inner perimeters</span></td><td>솔기를 비스듬히 겹쳐 덜 보이게 하는 기능입니다. 기본은 꺼져 있습니다(Nowhere).</td></tr>
+    <tr class="minor"><td>외부 경계선 먼저</td><td>바깥 벽을 안쪽 벽보다 먼저 뽑습니다. 바깥 치수가 조금 정확해지지만 오버행은 나빠집니다.</td></tr>
+    <tr class="minor"><td>Fill gaps</td><td>벽 사이 좁은 틈을 채웁니다.</td></tr>
+    <tr class="minor"><td>Perimeter generator</td><td>벽 경로를 계산하는 방식입니다. 기본값 Arachne는 두께가 변하는 벽을 매끄럽게 채웁니다.</td></tr>
+    <tr class="grp"><td colspan="2">Fuzzy skin (experimental)</td></tr>
+    <tr class="minor"><td>Fuzzy Skin 관련 3개<span class="names">Fuzzy Skin, Fuzzy skin thickness, Fuzzy skin point distance</span></td><td>겉면을 일부러 거칠게 만드는 기능입니다. 부품에는 쓰지 않습니다.</td></tr>
+    <tr class="grp"><td colspan="2">Only one perimeter</td></tr>
+    <tr class="minor"><td>Single perimeter on top surfaces</td><td>맨 윗면의 벽을 한 겹만 뽑습니다.</td></tr>
+    <tr class="minor"><td>Only one perimeter on first layer</td><td>첫 층의 벽을 한 겹만 뽑습니다.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</details>
+<details class="setpage">
+  <summary>채움(infill)<span class="sum-key">중요: 채우기(fill) 밀도, 채우기(fill) 패턴</span></summary>
+  <div class="inner">
+  <figure class="figure shot"><img src="./images/set-infill.webp" alt="출력 설정의 채움(infill) 페이지 화면" loading="lazy"></figure>
+  <table class="wrap-first settings">
+    <thead><tr><th>항목</th><th>하는 일</th></tr></thead>
+    <tbody>
+    <tr class="grp"><td colspan="2">채움(infill)</td></tr>
+    <tr class="key"><td>채우기(fill) 밀도</td><td>속을 얼마나 채울지입니다. 힘 받는 부품은 올리되, 강도는 둘레를 늘리는 쪽이 더 효과적입니다.</td></tr>
+    <tr class="key"><td>채우기(fill) 패턴</td><td>속 채움 무늬입니다. 기본 그리드는 빠릅니다. 자이로이드(Gyroid)나 큐빅(Cubic)처럼 방향이 바뀌는 무늬는 여러 방향의 힘에 고르게 버팁니다.</td></tr>
+    <tr class="minor"><td>채우기 앵커의 길이 · 최대 길이</td><td>속 채움 선 끝을 벽에 붙이는 길이입니다.</td></tr>
+    <tr class="minor"><td>상단 채우기 패턴 · 하단 채우기 패턴</td><td>윗면과 아랫면의 무늬입니다. 겉모양에만 영향을 줍니다.</td></tr>
+    <tr class="grp"><td colspan="2">다림질</td></tr>
+    <tr class="minor"><td>다림질 관련 4개<span class="names">다림질 활성화, 다림질 타입, 유량, 다림질 가공 패스 사이의 간격</span></td><td>맨 윗면을 노즐로 한 번 더 문질러 매끈하게 만듭니다. 겉모양만 바뀌고 시간이 늘어납니다.</td></tr>
+    <tr class="grp"><td colspan="2">인쇄 시간 단축</td></tr>
+    <tr class="minor"><td>속 채움 묶기 3개<span class="names">Automatic infill combination, Automatic infill combination - Max layer height, 다음 레이어마다 결합</span></td><td>속 채움을 몇 층씩 묶어 두껍게 뽑아 시간을 줄입니다.</td></tr>
+    <tr class="grp"><td colspan="2">고급</td></tr>
+    <tr class="minor"><td>솔리드 인필 간격</td><td>정해진 층마다 속을 꽉 채운 층을 넣습니다. 0이면 넣지 않습니다.</td></tr>
+    <tr class="minor"><td>채움 각도</td><td>속 채움 선의 방향입니다.</td></tr>
+    <tr class="minor"><td>솔리드 채우기 임계값</td><td>이 면적보다 작은 단면은 속을 꽉 채웁니다.</td></tr>
+    <tr class="minor"><td>브릿지 각도</td><td>브릿지 선의 방향입니다. 0이면 자동입니다.</td></tr>
+    <tr class="minor"><td>둘레를 횡단 할 때만 수축</td><td>벽을 넘어갈 때만 필라멘트를 살짝 되감습니다(리트랙션).</td></tr>
+    <tr class="minor"><td>둘레보다 앞쪽에 채움</td><td>속 채움을 벽보다 먼저 뽑습니다. 겉면이 나빠질 수 있습니다.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</details>
+<details class="setpage">
+  <summary>스커트와 브림<span class="sum-key">중요: Brim type, 브림 폭</span></summary>
+  <div class="inner">
+  <figure class="figure shot"><img src="./images/set-skirt.webp" alt="출력 설정의 스커트와 브림 페이지 화면" loading="lazy"></figure>
+  <table class="wrap-first settings">
+    <thead><tr><th>항목</th><th>하는 일</th></tr></thead>
+    <tbody>
+    <tr class="grp"><td colspan="2">스커트</td></tr>
+    <tr class="minor"><td>루프(Loops) (최소)</td><td>출력물에서 떨어진 곳에 미리 그려 보는 선의 수입니다. 0이면 그리지 않습니다.</td></tr>
+    <tr class="minor"><td>스커트 세부 4개<span class="names">Distance from brim/object, 스커트(Skirt) 높이, 드래프트 쉴드, 최소 필라멘트 압출 길이</span></td><td>스커트의 거리, 높이, 바람막이 벽, 최소 압출 길이입니다.</td></tr>
+    <tr class="grp"><td colspan="2">테두리</td></tr>
+    <tr class="key"><td>Brim type · 브림 폭</td><td>첫 층 바깥에 얇은 테두리(브림)를 둘러 시트에 넓게 붙게 합니다. 모서리가 들뜨는 걸 막는 데 효과적입니다(<a href="#printing">8장</a>). 폭이 0이면 꺼집니다.</td></tr>
+    <tr class="minor"><td>Brim separation gap</td><td>브림과 출력물 사이 틈입니다. 크면 떼기 쉬워집니다.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</details>
+<details class="setpage">
+  <summary>서포트 재료 / 라프트 / 스커트 익스트루더<span class="sum-key">중요: 서포트 재료 생성, 자동 생성 지원, 오버행 한계점, 모양새, Top contact Z distance, 출력물만 서포트를 지지</span></summary>
+  <div class="inner">
+  <figure class="figure shot"><img src="./images/set-support.webp" alt="출력 설정의 서포트 재료 / 라프트 / 스커트 익스트루더 페이지 화면" loading="lazy"></figure>
+  <table class="wrap-first settings">
+    <thead><tr><th>항목</th><th>하는 일</th></tr></thead>
+    <tbody>
+    <tr class="grp"><td colspan="2">서포트 재료 / 라프트 / 스커트 익스트루더</td></tr>
+    <tr class="key"><td>서포트 재료 생성</td><td>서포트를 만들지 정합니다.</td></tr>
+    <tr class="key"><td>자동 생성 지원</td><td>켜면 오버행을 찾아 자동으로 서포트를 만듭니다. 끄면 직접 칠한 곳(페인트 온 지원)에만 만듭니다.</td></tr>
+    <tr class="key"><td>오버행 한계점</td><td>수평면에서 잰 각도입니다. 이보다 덜 기울어진(더 누운) 면에 서포트를 만듭니다. 0이면 자동입니다.</td></tr>
+    <tr class="minor"><td>첫 번째 서포트 더 강화</td><td>처음 정한 층 수만큼은 오버행이 아니어도 서포트를 만듭니다.</td></tr>
+    <tr class="minor"><td>First layer density · First layer expansion</td><td>서포트 첫 층의 밀도와 넓이입니다.</td></tr>
+    <tr class="grp"><td colspan="2">서포트와 라프트 재료를 선택 (첫 번째 칸: 라프트)</td></tr>
+    <tr class="minor"><td>라프트 관련 3개<span class="names">라프트(Raft) 레이어, Raft contact Z distance, Raft expansion</span></td><td>출력물 밑에 받침층을 먼저 깔고 그 위에 뽑습니다. 스무스 PEI에 PLA는 거의 필요 없습니다.</td></tr>
+    <tr class="grp"><td colspan="2">서포트와 라프트 재료를 선택 (두 번째 칸: 서포트 모양)</td></tr>
+    <tr class="key"><td>모양새</td><td>서포트 모양입니다. Snug는 출력물 모양을 따라 붙고, Grid는 격자 기둥이고, Organic은 나뭇가지 모양이라 재료가 적게 들고 잘 떨어집니다.</td></tr>
+    <tr class="key"><td>Top contact Z distance</td><td>서포트 윗면과 출력물 사이 틈입니다. 크면 잘 떨어지지만 서포트에 닿은 면이 거칠어집니다. 기본은 0.2(분리 가능)입니다.</td></tr>
+    <tr class="minor"><td>Bottom contact Z distance</td><td>출력물 위에 세운 서포트의 아래쪽 틈입니다.</td></tr>
+    <tr class="minor"><td>서포트 속 무늬 5개<span class="names">패턴, 서포트 주변이나 외부로, 패턴 간격, 패턴 각도, Closing radius</span></td><td>서포트 속 무늬와 간격입니다.</td></tr>
+    <tr class="minor"><td>인터페이스 5개<span class="names">Top interface layers, Bottom interface layers, Interface pattern, 인터페이스 패턴 간격, 인터페이스 루프</span></td><td>출력물과 닿는 서포트 면을 촘촘하게 만드는 층입니다. 많을수록 닿은 면이 매끈해지지만 떼기 어려워집니다.</td></tr>
+    <tr class="key"><td>출력물만 서포트를 지지</td><td>켜면 시트 위에서 올라오는 서포트만 만들고, 출력물 위에는 세우지 않습니다. 화면 번역이 어색한데, 원래 이름은 Support on build plate only입니다.</td></tr>
+    <tr class="minor"><td>물체와 그 서포트 사이 XY 분리</td><td>서포트를 출력물 옆으로 얼마나 띄울지입니다.</td></tr>
+    <tr class="minor"><td>서포트와 브릿지를 사용하지 않음</td><td>브릿지 아래에는 서포트를 만들지 않습니다.</td></tr>
+    <tr class="minor"><td>객체 레이어와 동기화</td><td>여러 재료로 뽑을 때 쓰는 기능입니다.</td></tr>
+    <tr class="grp"><td colspan="2">Organic supports</td></tr>
+    <tr class="minor"><td>가지 모양 8개<span class="names">Maximum Branch Angle, Preferred Branch Angle, Branch Diameter, Branch Diameter Angle, Branch Diameter with double walls, Tip Diameter, Branch Distance, Branch Density</span></td><td>모양새가 Organic일 때 가지의 각도, 굵기, 간격입니다.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</details>
+<details class="setpage">
+  <summary>속도<span class="sum-key">중요 항목 없음. 모두 기본값 그대로</span></summary>
+  <div class="inner">
+  <figure class="figure shot"><img src="./images/set-speed.webp" alt="출력 설정의 속도 페이지 화면" loading="lazy"></figure>
+  <table class="wrap-first settings">
+    <thead><tr><th>항목</th><th>하는 일</th></tr></thead>
+    <tbody>
+    <tr class="grp"><td colspan="2">인쇄 이동 속도</td></tr>
+    <tr class="minor"><td>부분별 출력 속도 12개<span class="names">둘레, 작은 둘레, 외측 둘레, 채움(infill), 솔리드 인필, 가장 윗부분 채움, 서포트 재료 / 라프트 / 스커트 익스트루더, 서포트 인터페이스, 브릿지(Bridges), Over bridges, 공백 채움, 다림 질</span></td><td>부분별 출력 속도입니다. 기본값 그대로 둡니다. 올리면 노즐이 막히거나 품질이 떨어질 수 있습니다.</td></tr>
+    <tr class="grp"><td colspan="2">Dynamic overhang speed</td></tr>
+    <tr class="minor"><td>오버행 속도 5개<span class="names">Enable dynamic overhang speeds, speed for 0% overlap (bridge), speed for 25% / 50% / 75% overlap</span></td><td>오버행이 아래층에 걸친 정도에 따라 속도를 줄입니다.</td></tr>
+    <tr class="grp"><td colspan="2">인쇄되지 않은 이동속도</td></tr>
+    <tr class="minor"><td>이송 · Z travel</td><td>출력하지 않고 이동할 때의 속도입니다.</td></tr>
+    <tr class="grp"><td colspan="2">수정</td></tr>
+    <tr class="minor"><td>첫 레이어 속도 외 2개<span class="names">첫 레이어 속도, First layer solid infill speed, Speed of object first layer over raft interface</span></td><td>첫 층 속도입니다. 느리게 뽑아야 잘 붙습니다.</td></tr>
+    <tr class="grp"><td colspan="2">가속 제어(고급)</td></tr>
+    <tr class="minor"><td>부분별 가속도 12개</td><td>부분별 가속도입니다.</td></tr>
+    <tr class="grp"><td colspan="2">오토스피드(고급)</td></tr>
+    <tr class="minor"><td>최대 프린트 속도 · 최대 체적 속도</td><td>속도 상한입니다.</td></tr>
+    <tr class="grp"><td colspan="2">Pressure equalizer (experimental)</td></tr>
+    <tr class="minor"><td>최대 체적 기울기 2개</td><td>속도가 바뀔 때 압출량이 급하게 변하지 않게 합니다.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</details>
+<details class="setpage">
+  <summary>노즐 지름이 다른 여러 압출기로<span class="sum-key">UB 프린터는 쓰지 않음</span></summary>
+  <div class="inner">
+  <figure class="figure shot"><img src="./images/set-extruders.webp" alt="출력 설정의 노즐 지름이 다른 여러 압출기로 페이지 화면" loading="lazy"></figure>
+  <table class="wrap-first settings">
+    <thead><tr><th>항목</th><th>하는 일</th></tr></thead>
+    <tbody>
+    <tr class="minor"><td>압출 기 · 스미즈 방지 · 와이프 타워 · 고급</td><td>압출기가 여러 개인 프린터(멀티컬러)용 설정입니다. UB 프린터는 압출기가 하나라 쓰지 않습니다.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</details>
+<details class="setpage">
+  <summary>고급<span class="sum-key">중요 항목 없음. 모두 기본값 그대로</span></summary>
+  <div class="inner">
+  <figure class="figure shot"><img src="./images/set-advanced.webp" alt="출력 설정의 고급 페이지 화면" loading="lazy"></figure>
+  <table class="wrap-first settings">
+    <thead><tr><th>항목</th><th>하는 일</th></tr></thead>
+    <tbody>
+    <tr class="grp"><td colspan="2">돌출 폭</td></tr>
+    <tr class="minor"><td>부분별 선 굵기 9개<span class="names">기본 압출 폭, 첫 레이어, 둘레, 외측 둘레, 채움(infill), 솔리드 인필, 가장 윗부분 채움, 서포트 재료 / 라프트 / 스커트 익스트루더, Automatic extrusion widths calculation</span></td><td>부분별 선 굵기입니다.</td></tr>
+    <tr class="grp"><td colspan="2">오버랩 · 흐름도</td></tr>
+    <tr class="minor"><td>채움/둘레 겹침</td><td>속 채움이 벽과 겹치는 정도입니다.</td></tr>
+    <tr class="minor"><td>브릿지 유량(flow)값</td><td>브릿지를 뽑을 때 압출량 배율입니다.</td></tr>
+    <tr class="grp"><td colspan="2">새로운 슬라이싱 작업 시작</td></tr>
+    <tr class="minor"><td>자르는 방식 5개<span class="names">슬라이스 갭 닫기 반지름, Slicing Mode, Slice resolution, G-code resolution, Arc fitting</span></td><td>모델을 층으로 자르는 방식과 정밀도입니다.</td></tr>
+    <tr class="minor"><td>XY 크기 보정</td><td>XY 방향 크기를 한꺼번에 늘리거나 줄입니다. 구멍도 같이 바뀌니, 끼워 맞출 치수는 설계에서 여유를 주는 쪽이 낫습니다.</td></tr>
+    <tr class="minor"><td>코끼리 발(Elephant foot) 보상값</td><td>첫 층이 눌려 퍼지는 만큼 첫 층을 안쪽으로 줄입니다.</td></tr>
+    <tr class="grp"><td colspan="2">Arachne perimeter generator · Custom parameters</td></tr>
+    <tr class="minor"><td>Arachne 세부값 6개<span class="names">Perimeter transitioning threshold angle, Perimeter transitioning filter margin, Perimeter transition length, Perimeter distribution count, Minimum perimeter width, Minimum feature size</span></td><td>Arachne 방식의 벽 계산 세부값입니다.</td></tr>
+    <tr class="minor"><td>Custom parameters</td><td>설정을 직접 적어 넣는 칸입니다.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</details>
+<details class="setpage">
+  <summary>출력 옵션<span class="sum-key">중요 항목 없음</span></summary>
+  <div class="inner">
+  <figure class="figure shot"><img src="./images/set-output.webp" alt="출력 설정의 출력 옵션 페이지 화면" loading="lazy"></figure>
+  <table class="wrap-first settings">
+    <thead><tr><th>항목</th><th>하는 일</th></tr></thead>
+    <tbody>
+    <tr class="grp"><td colspan="2">순차적 인쇄</td></tr>
+    <tr class="minor"><td>개별 개체 완성</td><td>여러 개를 올렸을 때 하나를 끝까지 뽑고 다음 것으로 넘어갑니다. 노즐 부분이 먼저 뽑은 것과 부딪힐 수 있어서 높이와 간격에 제한이 생깁니다.</td></tr>
+    <tr class="grp"><td colspan="2">출력 파일</td></tr>
+    <tr class="minor"><td>세부 G-코드</td><td>G코드에 설명을 덧붙입니다.</td></tr>
+    <tr class="minor"><td>레이블 개체</td><td>출력 중 물체 하나만 취소할 수 있게 표시합니다.</td></tr>
+    <tr class="minor"><td>출력 파일이름 형식</td><td>내보낼 파일 이름 규칙입니다. 맨 앞에 모델 파일 이름이 붙습니다.</td></tr>
+    <tr class="grp"><td colspan="2">기타 · 포스트 프로세싱 스크립트</td></tr>
+    <tr class="minor"><td>G-code substitutions · 포스트 프로세싱 스크립트</td><td>G코드를 자동으로 고치는 기능입니다.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</details>
+<details class="setpage">
+  <summary>메모 · 종속성<span class="sum-key">건드리지 않음</span></summary>
+  <div class="inner">
+  <figure class="figure shot"><img src="./images/set-notes-deps.webp" alt="출력 설정의 메모 · 종속성 페이지 화면" loading="lazy"></figure>
+  <table class="wrap-first settings">
+    <thead><tr><th>항목</th><th>하는 일</th></tr></thead>
+    <tbody>
+    <tr class="minor"><td>메모</td><td>설정에 메모를 남기는 칸입니다.</td></tr>
+    <tr class="minor"><td>종속성</td><td>이 설정을 쓸 수 있는 프린터 조건입니다.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</details>
+
+<h3>모델 파일 구하기</h3>
+<p>다른 사람이 만든 모델을 받는 곳, 파일 형식, STL 고치는 법은 Fusion 실습 자료의 <a href="https://kimstructor.github.io/fusion-guide/#files">파일 받기와 고치기</a>에 정리해 두었습니다. 프루사슬라이서 위쪽 <strong>Printables</strong> 탭에서도 모델을 바로 찾을 수 있습니다.</p>
+
+<h3>슬라이싱과 내보내기</h3>
+<ol>
+  <li>모델 파일을 프루사슬라이서 화면에 끌어다 놓습니다.</li>
+  <li>방향을 정하고(<a href="#orient">4장</a>), 프린터·필라멘트·출력 설정을 확인한 뒤 <strong>바로 슬라이스</strong>를 누릅니다.</li>
+  <li>결과를 확인합니다. 경고가 떠 있으면 해결하고 진행해 주세요.</li>
+  <li>MK3S는 SD카드, MK4는 USB를 컴퓨터에 꽂고 <strong>G코드 내보내기</strong>로 저장합니다. SD카드나 USB가 꽂혀 있으면 옆에 그쪽으로 바로 내보내는 버튼이 생깁니다. 저장한 뒤에는 꺼내기를 누르고 뽑아 주세요.</li>
+  <li>파일 이름은 영어로 지어 주세요. 한글 이름은 프린터 화면에서 깨질 수 있어서 자기 파일을 찾기 어렵습니다.</li>
+</ol>
+<figure class="figure shot">
+  <img src="./images/slicer-sliced.webp" alt="슬라이스한 뒤 화면. 1 범례, 2 세로 슬라이더, 3 가로 슬라이더, 4 슬라이스된 정보, 5 G코드 내보내기, 6 경고" loading="lazy">
+</figure>
+<ol class="marks">
+  <li><span class="m">1</span><span><strong>범례:</strong> 벽, 속 채움 같은 부분별 출력 시간과 필라멘트 양입니다. 아래 Total이 전체 예상 시간입니다.</span></li>
+  <li><span class="m">2</span><span><strong>세로 슬라이더:</strong> 위아래로 움직여 층마다 어떻게 쌓이는지 봅니다. 서포트가 제대로 생겼는지 볼 때 씁니다.</span></li>
+  <li><span class="m">3</span><span><strong>가로 슬라이더:</strong> 한 층 안에서 노즐이 지나가는 순서를 봅니다.</span></li>
+  <li><span class="m">4</span><span><strong>슬라이스된 정보:</strong> 필라멘트 사용량(g, m)과 예상 인쇄 시간입니다.</span></li>
+  <li><span class="m">5</span><span><strong>G코드 내보내기:</strong> 프린터에 넣을 파일로 저장합니다.</span></li>
+  <li><span class="m">6</span><span><strong>경고:</strong> 문제가 될 만한 곳을 알려 줍니다. 아래는 시트에 붙는 면이 좁다는 경고(Low bed adhesion)이고, 서포트나 브림을 켜 보라고 합니다.</span></li>
+</ol>
+<figure class="figure shot half">
+  <img src="./images/warn-stability.webp" alt="경고. Detected print stability issues, Low bed adhesion, Consider enabling supports, Also consider enabling brim" loading="lazy">
+</figure>
+</section>
+
+<section class="section reveal">
+<h2 id="mk3s"><span class="sec-n">6</span>MK3S로 출력하기</h2>
+<div class="figure duo">
+  <figure>
+    <img src="./images/mk3s-screen.webp" alt="MK3S 화면과 오른쪽 노브, 노브 아래 X 모양 리셋 버튼" loading="lazy">
+    <figcaption>처음 화면. 오른쪽이 노브, 그 아래 X 버튼이 리셋 버튼입니다.</figcaption>
+  </figure>
+  <figure>
+    <img src="./images/mk3s-menu.webp" alt="MK3S 메뉴. Preheat, Print from SD, AutoLoad filament, Unload filament" loading="lazy">
+    <figcaption>노브를 눌러 메뉴를 열고 돌려서 내린 모습</figcaption>
+  </figure>
+</div>
+
+<h3>화면과 노브</h3>
+<p>노브를 돌려서 고르고, 눌러서 선택합니다. 처음 화면에서 노브를 누르면 메뉴가 열리고, 돌리면 아래 항목이 나옵니다. 노브 바로 아래 X 버튼이 리셋 버튼입니다. 누르면 전원을 껐다 켠 것처럼 바로 멈춥니다.</p>
+
+<h3>필라멘트 넣기</h3>
+<ol>
+  <li>필라멘트 끝을 니퍼로 비스듬히 자른 뒤, 익스트루더(노즐 위에서 필라멘트를 밀어 넣는 부분) 위 구멍에 밀어 넣습니다. 센서가 감지하면 넣기가 시작되니, 메뉴의 <strong>AutoLoad filament</strong>는 따로 누를 필요 없습니다.</li>
+  <li>노즐이 식어 있으면 소재를 고르는 화면이 먼저 뜹니다. <strong>PLA</strong>를 고르고 기다리면, 온도가 다 올랐을 때 <strong>Press the knob to load filament</strong>가 나옵니다. 노브를 누릅니다. 노즐이 이미 데워져 있으면 이 단계 없이 바로 끌어당깁니다.</li>
+  <li>모터가 필라멘트를 끌어당겨 노즐로 짜냅니다.</li>
+  <li><strong>Filament extruding &amp; with correct color?</strong>가 나오면, 새 색이 제대로 나올 때 <strong>Yes</strong>, 이전 색이 섞여 나오면 <strong>No</strong>를 골라 더 짜냅니다.</li>
+</ol>
+<figure class="figure half">
+  <img src="./images/mk3s-extruder.webp" alt="MK3S 익스트루더 위 구멍에 필라멘트가 들어가 있는 모습" loading="lazy">
+  <figcaption>MK3S 필라멘트 넣는 곳</figcaption>
+</figure>
+
+<h3>필라멘트 빼기</h3>
+<ol>
+  <li>메뉴에서 <strong>Unload filament</strong>를 고릅니다. 노즐이 식어 있으면 <strong>PLA</strong>를 고릅니다.</li>
+  <li>온도가 오르면 안내에 따라 노브를 누르고, 빼라고 나오면 필라멘트를 살살 당겨 뺍니다.</li>
+</ol>
+
+<h3>파일 넣고 출력 시작</h3>
+<p>SD카드는 화면 왼쪽 옆면에 넣습니다. 사진처럼 금색 단자가 앞을 보게 해서 넣어 주세요.</p>
+<div class="callout warn">
+  <p class="title">SD카드는 천천히 조심히 넣어 주세요</p>
+  <p>오래된 카드라 막 밀어 넣으면 케이스가 갈라지고 깨질 수 있습니다.</p>
+</div>
+<p>노브를 눌러 메뉴를 열고 <strong>Print from SD</strong>에서 파일을 고르면 출력이 시작됩니다.</p>
+<figure class="figure half">
+  <img src="./images/mk3s-sd.webp" alt="MK3S 화면 왼쪽 옆면 슬롯에 SD카드를 넣는 모습" loading="lazy">
+  <figcaption>SD카드 넣는 곳 (화면 왼쪽 옆면)</figcaption>
+</figure>
+
+<h3>멈추기</h3>
+<ul>
+  <li><strong>보통:</strong> 출력 중에 노브를 눌러 메뉴를 열고 <strong>Stop print</strong>를 고릅니다.</li>
+  <li><strong>바로:</strong> 노브 아래 리셋 버튼(X)을 누릅니다.</li>
+</ul>
+</section>
+
+<section class="section reveal">
+<h2 id="mk4"><span class="sec-n">7</span>MK4로 출력하기</h2>
+<div class="figure duo">
+  <figure>
+    <img src="./images/mk4-screen.webp" alt="MK4 처음 화면. No USB, Preheat, Filament, Control, Settings, Info와 오른쪽 노브, 아래 RESET 버튼" loading="lazy">
+    <figcaption>처음 화면. 오른쪽이 노브, 그 아래가 RESET 버튼입니다.</figcaption>
+  </figure>
+  <figure>
+    <img src="./images/mk4-filament-menu.webp" alt="MK4 FILAMENT 메뉴. Loaded Filament, Load Filament, Unload Filament, Change Filament, Purge Filament, Manage Filaments" loading="lazy">
+    <figcaption>Filament를 눌러 연 메뉴</figcaption>
+  </figure>
+</div>
+
+<h3>화면과 노브</h3>
+<p>노브를 돌려서 고르고, 눌러서 선택합니다. 처음 화면에는 출력(USB가 없으면 <strong>No USB</strong>로 표시), <strong>Preheat</strong>, <strong>Filament</strong>, <strong>Control</strong>, <strong>Settings</strong>, <strong>Info</strong>가 있습니다. 노브 바로 아래 <strong>RESET</strong> 버튼이 리셋 버튼입니다.</p>
+
+<h3>필라멘트 넣기</h3>
+<ol>
+  <li>필라멘트 끝을 니퍼로 비스듬히 자른 뒤, 익스트루더 위 구멍에 밀어 넣습니다. 센서가 감지하면 넣기가 시작됩니다. 시작되지 않으면 <strong>Filament</strong> → <strong>Load Filament</strong>를 고릅니다.</li>
+  <li>소재를 고르는 화면이 뜨면 <strong>PLA</strong>를 고르고 온도가 오를 때까지 기다립니다.</li>
+  <li><strong>Continue</strong>를 고르면 필라멘트를 끌어당겨 노즐로 짜냅니다.</li>
+  <li>새 색이 제대로 나오면 <strong>Yes</strong>, 이전 색이 섞여 나오면 <strong>Purge More</strong>, 아예 안 나오면 <strong>Retry</strong>를 고릅니다.</li>
+</ol>
+<figure class="figure half">
+  <img src="./images/mk4-extruder.webp" alt="MK4 익스트루더 위 구멍에 필라멘트가 들어가 있는 모습" loading="lazy">
+  <figcaption>MK4 필라멘트 넣는 곳</figcaption>
+</figure>
+
+<h3>필라멘트 빼기와 바꾸기</h3>
+<ol>
+  <li><strong>Filament</strong> → <strong>Unload Filament</strong>를 고릅니다. 노즐이 저절로 데워집니다.</li>
+  <li>필라멘트가 밀려 나오다 멈추면 손으로 빼냅니다.</li>
+</ol>
+<p>다른 필라멘트로 바꿀 때는 <strong>Change Filament</strong>를 고르면 빼기와 넣기를 이어서 합니다.</p>
+
+<h3>파일 넣고 출력 시작</h3>
+<p>USB는 화면 오른쪽 옆면에 꽂습니다. 꽂으면 처음 화면의 <strong>No USB</strong>가 <strong>Print</strong>로 바뀝니다. <strong>Print</strong>를 눌러 파일을 고르고, 미리보기 화면에서 <strong>Print</strong>를 누르면 출력이 시작됩니다.</p>
+<figure class="figure half">
+  <img src="./images/mk4-usb.webp" alt="MK4 화면 오른쪽 옆면에 USB를 꽂는 모습" loading="lazy">
+  <figcaption>USB 꽂는 곳 (화면 오른쪽 옆면)</figcaption>
+</figure>
+
+<h3>멈추기</h3>
+<ul>
+  <li><strong>보통:</strong> 출력 화면에서 <strong>Stop</strong>을 고릅니다.</li>
+  <li><strong>바로:</strong> 노브 아래 <strong>RESET</strong> 버튼을 누릅니다.</li>
+</ul>
+</section>
+
+<section class="section reveal">
+<h2 id="printing"><span class="sec-n">8</span>출력 중</h2>
+
+<h3>시작할 때</h3>
+<p>출력을 시작하면 프린터가 처음에 위치를 잡으면서 벽에 살짝 부딪힙니다. 정상입니다. 세게 부딪히면서 드드득거리면 오류이니 멈추고 다시 출력해 주세요.</p>
+<p>본 출력 전에 시트 앞쪽 왼쪽에 일자로 선을 짜냅니다(퍼지 라인). 이것도 정상입니다.</p>
+<figure class="figure half">
+  <img src="./images/purge-line.webp" alt="시트 앞쪽 왼쪽 모서리에 짜낸 퍼지 라인" loading="lazy">
+  <figcaption>퍼지 라인</figcaption>
+</figure>
+
+<h3>프린터를 쓰기 전에 카톡 주세요</h3>
+<p>실습방이 아니라 김도윤에게 개인 카톡으로 프린터를 쓴다고만 알려 주시면 됩니다.</p>
+
+<h3>첫 레이어 확인</h3>
+<div class="callout warn">
+  <p class="title">첫 레이어가 시트에 붙는 걸 보고 자리를 뜨세요</p>
+  <p>안 붙고 끌려다니면 바로 멈추세요. 그대로 두면 필라멘트가 스파게티처럼 엉키고 노즐에 엉겨 붙습니다. 안 붙으면 시트를 닦고(<a href="#sheet">3장</a>) 다시 뽑아 보세요.</p>
+</div>
+
+<h3>드드득 소리가 날 때</h3>
+<p>출력 중에 노즐이 옆면에 부딪혀 드드득거리거나 엉뚱한 곳에 출력되면 오류입니다. 멈추고 다시 출력해 주세요.</p>
+<p>출력물이 들떠서 노즐이 긁는 경우도 있습니다.</p>
+<ul>
+  <li>시트가 더럽거나, 온도나 바람 때문에 출력물이 수축하면 모서리와 꼭짓점이 들뜹니다.</li>
+  <li>작은 부품을 빨리 뽑으면 층이 다 식기 전에 다음 층이 올라가서 흐물해지고 모양이 이상해집니다.</li>
+</ul>
+<p>두 경우 모두 노즐이 튀어나온 부분을 긁으면서 드드득 소리가 날 수 있습니다. 잠깐은 괜찮지만, 계속될 것 같으면 프린터가 고장 나니 바로 멈춰 주세요.</p>
+
+<h3>멈추는 법</h3>
+<p>보통은 화면 메뉴에서 멈추고, 급할 때는 노브 바로 아래 리셋 버튼을 누릅니다. 기종별 방법은 <a href="#mk3s">6장</a>과 <a href="#mk4">7장</a>에 있습니다.</p>
+<p>멈춘 출력은 이어서 뽑을 수 없습니다. 시트 위 출력물을 떼어내고 처음부터 다시 출력해 주세요.</p>
+
+<h3>첫 출력은 작고 단순하게</h3>
+<p>10~20분 안에 끝나는 간단한 모델부터 시작해 보세요. 과정을 한 번 다 겪어 보는 게 목적이라 큰 걸 뽑을 이유가 없습니다.</p>
+</section>
+
+<section class="section reveal">
+<h2 id="cleanup"><span class="sec-n">9</span>출력 후 정리</h2>
+<ol>
+  <li>시트가 식으면 시트째 빼서 출력물을 떼어냅니다.</li>
+  <li>퍼지 라인을 치워 주세요. 뒷사람을 위해 꼭 부탁드립니다.</li>
+  <li>시트에 남은 필라멘트 조각이 없는지 확인합니다.</li>
+  <li>시트를 다시 올릴 때 베드 위에 이물질이 떨어지지 않았는지 봐 주세요.</li>
+  <li>필라멘트를 뺐다면 끝을 꼭 스풀 구멍에 끼워서(<a href="#filament">2장</a>) 선반 맨 위 원래 자리에 둡니다.</li>
+  <li>쓰레기와 서포트 조각을 치우고 처음 상태로 돌려놓습니다.</li>
+</ol>
+<p>잘 나온 출력물은 사진 찍어서 3D 실습방에 올려 주세요. 다른 사람들이 뭘 만들 수 있는지 알게 되고, 보는 재미도 있습니다.</p>
+</section>
+
+<section class="section reveal">
+<h2 id="help"><span class="sec-n">10</span>고장과 문의</h2>
+<div class="callout warn">
+  <p class="title">고장이나 오류가 나면 직접 고치려 하지 말아 주세요</p>
+  <p>분해하거나 임의로 조작하지 말고 바로 연락 주세요. 상태를 그대로 두는 게 원인을 찾는 데 제일 도움이 됩니다.</p>
+</div>
+<p>UB에는 장비를 봐 주는 사람이 따로 없습니다. 고장 나면 관리자가 혼자 고쳐야 하고, 그동안 다른 부원들도 그 프린터를 못 씁니다. 수칙을 지켜서 쓰는 게 결국 본인한테 돌아옵니다.</p>
+<p>설정이 헷갈리거나 처음 해 보는 작업이라면, 시작하기 전에 물어보는 편이 훨씬 빠릅니다.</p>
+<div class="callout">
+  <p class="title">김도윤</p>
+  <p>궁금하거나 어떻게 하는지 모르겠으면 아무 때나 카톡 주세요.</p>
+</div>
+<p>참고: <a href="https://help.prusa3d.com/">Prusa 지식 베이스</a></p>
+</section>
+
+<footer>
+  경북대학교 하드웨어 제작 동아리 UB · 제작일 2026.11.12
+</footer>
+
+</div>
+<script src="../../assets/reveal.js"></script>
+</body>
+</html>

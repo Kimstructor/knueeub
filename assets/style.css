@@ -227,3 +227,39 @@ table.wrap-first td:first-child{white-space:normal}
 .figure.duo img{width:100%;height:auto}
 table.keep-2 th,table.keep-2 td:nth-child(2){white-space:nowrap}
 td .sub{display:block;font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:2px}
+
+/* 3D 프린터 안내 (guides/3d-printer) — 이 페이지에만 적용 */
+.pg-printer h4{font-size:17px;font-weight:700;margin:26px 0 6px;letter-spacing:-.01em}
+.pg-printer h4 + ol,.pg-printer h4 + ul{margin-top:6px}
+.pg-printer .callout ul,.pg-printer .callout ol{margin:0;padding-left:20px}
+.pg-printer .callout li{margin-bottom:6px}
+.pg-printer .callout li:last-child{margin-bottom:0}
+.pg-printer .callout.must{margin-top:36px}
+.pg-printer .figure .placeholder{padding:44px 16px}
+.pg-printer table.settings tr.key td{background:#fbf1d3}
+.pg-printer table.settings tr.key td:first-child{font-weight:700;color:var(--ink)}
+.pg-printer table.settings tr.minor td{color:var(--ink-soft)}
+.pg-printer table.settings tr.minor td:first-child{font-weight:400}
+.pg-printer .key-txt{background:#fbf1d3;font-weight:700;padding:0 4px;border-radius:3px}
+.pg-printer .minor-txt{color:var(--ink-soft)}
+.pg-printer{word-break:keep-all;overflow-wrap:break-word}
+.pg-printer .figure.half{max-width:420px}
+.pg-printer .figure.duo figure{margin:0}
+.pg-printer .figure.duo figcaption,.pg-printer .figure.half figcaption{margin-top:8px}
+.pg-printer table.settings tr.grp td{background:transparent;font-weight:700;color:var(--ink);padding-top:20px;border-bottom:2px solid var(--ink);font-size:15px}
+.pg-printer table.settings td .names{display:block;font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:3px}
+.pg-printer table.settings tr.key td .names{color:var(--ink-soft)}
+.pg-printer details.setpage{border:1px solid var(--rule);border-radius:6px;background:var(--panel);margin:10px 0}
+.pg-printer details.setpage>summary{cursor:pointer;padding:13px 16px;list-style:none;font-weight:700}
+.pg-printer details.setpage>summary::-webkit-details-marker{display:none}
+.pg-printer details.setpage>summary::before{content:"▸";color:var(--pad);margin-right:8px;display:inline-block;width:10px}
+.pg-printer details.setpage[open]>summary::before{content:"▾"}
+.pg-printer details.setpage .sum-key{display:block;font-weight:400;font-size:14px;color:var(--ink-soft);margin:2px 0 0 18px}
+.pg-printer details.setpage .inner{padding:0 16px 10px}
+.pg-printer details.setpage .figure{margin:8px 0 16px}
+.pg-printer .figure.shot img{max-width:100%;width:auto}
+.pg-printer ol.marks{list-style:none;padding-left:0}
+.pg-printer ol.marks li{display:flex;gap:10px;margin-bottom:8px}
+.pg-printer ol.marks .m{flex:0 0 24px;height:24px;border-radius:12px;background:#e03131;color:#fff;font-weight:700;font-size:14px;line-height:24px;text-align:center;margin-top:2px}
+.pg-printer table.settings td:first-child{width:36%}
+.pg-printer table.settings tr.grp td:first-child{width:auto}
